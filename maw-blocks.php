@@ -4,7 +4,7 @@
  * Plugin URI: https://github.com/yourusername/maw-blocks
  * Description: Feature-rich, style-light Gutenberg blocks for custom WordPress solutions. Enable only what you need, style everything your way.
  * Version: 1.0.0
- * Author: Your Name
+ * Author: Nick M
  * Author URI: https://yourwebsite.com
  * License: GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
