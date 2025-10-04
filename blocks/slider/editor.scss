@@ -1,0 +1,14 @@
+/**
+ * Slider Block Editor Styles
+ */
+
+.maw-slider {
+  &__wrapper {
+    display: block;
+  }
+
+  .block-editor-inner-blocks {
+    margin-bottom: var(--maw-spacing-md);
+  }
+}
+

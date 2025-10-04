@@ -1,0 +1,86 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "maw-blocks/testimonial-slider",
+  "version": "1.0.0",
+  "title": "MAW Testimonial Slider",
+  "category": "maw-blocks",
+  "icon": "format-quote",
+  "description": "Testimonial slider with configurable fields and ordering",
+  "keywords": ["testimonial", "review", "slider", "rating"],
+  "textdomain": "maw-blocks",
+  "editorScript": "file:../../build/blocks/testimonial-slider/index.js",
+  "editorStyle": "file:../../build/blocks/testimonial-slider/editor.css",
+  "style": "file:../../build/blocks/testimonial-slider/style-style.css",
+  "viewScript": "maw-blocks-testimonial-slider-view",
+  "attributes": {
+    "testimonials": {
+      "type": "array",
+      "default": []
+    },
+    "fieldOrder": {
+      "type": "array",
+      "default": ["image", "rating", "quote", "title", "citation"]
+    },
+    "enabledFields": {
+      "type": "object",
+      "default": {
+        "image": true,
+        "rating": true,
+        "quote": true,
+        "title": true,
+        "citation": true
+      }
+    },
+    "alignment": {
+      "type": "string",
+      "default": "center"
+    },
+    "ratingStyle": {
+      "type": "string",
+      "default": "stars"
+    },
+    "showArrows": {
+      "type": "boolean",
+      "default": true
+    },
+    "arrowIcon": {
+      "type": "string",
+      "default": "chevron"
+    },
+    "showDots": {
+      "type": "boolean",
+      "default": true
+    },
+    "dotsPosition": {
+      "type": "string",
+      "default": "below"
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": false
+    },
+    "autoplaySpeed": {
+      "type": "number",
+      "default": 5000
+    },
+    "loop": {
+      "type": "boolean",
+      "default": true
+    },
+    "speed": {
+      "type": "number",
+      "default": 500
+    }
+  },
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "customClassName": true,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  }
+}
+

@@ -1,0 +1,139 @@
+/**
+ * Slider Block Styles
+ *
+ * Minimal functional styles only
+ * Updated for build tracking
+ */
+
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+
+.maw-slider {
+  position: relative;
+  width: 100%;
+
+  &__container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__wrapper {
+    display: flex;
+    transition: transform var(--maw-transition-speed) var(--maw-transition-timing);
+  }
+
+  &__slide {
+    flex-shrink: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  &__navigation {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--maw-spacing-sm);
+  }
+
+  &__arrow {
+    @include maw-reset-button;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--maw-nav-arrow-size);
+    height: var(--maw-nav-arrow-size);
+    color: var(--maw-nav-arrow-color);
+    background: transparent;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    transition: all var(--maw-transition-speed) var(--maw-transition-timing);
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    span {
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+  }
+
+  &__dots {
+    display: flex;
+    gap: var(--maw-spacing-xs);
+    align-items: center;
+    justify-content: center;
+    margin-top: var(--maw-spacing-sm);
+
+    &--below {
+      margin-top: var(--maw-spacing-md);
+    }
+
+    &--inside-bottom {
+      position: absolute;
+      bottom: var(--maw-spacing-md);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+
+    &--side {
+      flex-direction: column;
+      position: absolute;
+      right: var(--maw-spacing-md);
+      top: 50%;
+      transform: translateY(-50%);
+      margin-top: 0;
+    }
+  }
+
+  &__dot {
+    width: var(--maw-nav-dot-size);
+    height: var(--maw-nav-dot-size);
+    border-radius: 50%;
+    background: var(--maw-nav-dot-color);
+    opacity: 0.3;
+    cursor: pointer;
+    transition: opacity var(--maw-transition-speed) var(--maw-transition-timing);
+
+    &--active,
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &.maw-slider--effect-fade &__wrapper {
+    position: relative;
+
+    .maw-slider__slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity var(--maw-transition-speed) var(--maw-transition-timing);
+
+      &.is-active {
+        position: relative;
+        opacity: 1;
+      }
+    }
+  }
+
+  @include maw-responsive(mobile) {
+    &__navigation {
+      margin-top: var(--maw-spacing-xs);
+    }
+
+    &__arrow {
+      width: calc(var(--maw-nav-arrow-size) * 0.8);
+      height: calc(var(--maw-nav-arrow-size) * 0.8);
+    }
+  }
+}
+

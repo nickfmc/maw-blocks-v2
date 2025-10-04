@@ -1,0 +1,49 @@
+/**
+ * Testimonial Slider Block Editor Styles
+ */
+
+@import '../../assets/scss/variables';
+
+.maw-testimonial-slider {
+  &__wrapper {
+    display: block;
+  }
+
+  &__item {
+    padding: var(--maw-spacing-md);
+    margin-bottom: var(--maw-spacing-md);
+    border: 1px solid var(--maw-color-border);
+    border-radius: 4px;
+  }
+
+  &__item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--maw-spacing-sm);
+    padding-bottom: var(--maw-spacing-sm);
+    border-bottom: 1px solid var(--maw-color-border);
+
+    h4 {
+      margin: 0;
+    }
+  }
+
+  &__field {
+    margin-bottom: var(--maw-spacing-sm);
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+  }
+
+  &__placeholder {
+    padding: var(--maw-spacing-xl);
+    text-align: center;
+    color: #999;
+    border: 2px dashed var(--maw-color-border);
+  }
+}
+

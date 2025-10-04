@@ -1,0 +1,30 @@
+/**
+ * MAW Blocks Editor Styles
+ *
+ * Styles for the Gutenberg editor only
+ */
+
+@import 'variables';
+
+.maw-video,
+.maw-slider,
+.maw-testimonial-slider {
+  border: 1px dashed var(--maw-color-border);
+  padding: var(--maw-spacing-md);
+  min-height: 200px;
+
+  &.is-selected {
+    border-color: var(--maw-color-primary);
+    border-style: solid;
+  }
+}
+
+.maw-editor-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  color: #999;
+  font-style: italic;
+}
+

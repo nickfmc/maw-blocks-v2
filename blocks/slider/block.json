@@ -1,0 +1,80 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "maw-blocks/slider",
+  "version": "1.0.0",
+  "title": "MAW Slider",
+  "category": "maw-blocks",
+  "icon": "images-alt2",
+  "description": "General purpose slider with flexible content using InnerBlocks",
+  "keywords": ["slider", "carousel", "slideshow"],
+  "textdomain": "maw-blocks",
+  "editorScript": "file:../../build/blocks/slider/index.js",
+  "editorStyle": "file:../../build/blocks/slider/editor.css",
+  "style": "file:../../build/blocks/slider/style-style.css",
+  "viewScript": "maw-blocks-slider-view",
+  "attributes": {
+    "showArrows": {
+      "type": "boolean",
+      "default": true
+    },
+    "arrowIcon": {
+      "type": "string",
+      "default": "chevron"
+    },
+    "showDots": {
+      "type": "boolean",
+      "default": true
+    },
+    "dotsPosition": {
+      "type": "string",
+      "default": "below"
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": false
+    },
+    "autoplaySpeed": {
+      "type": "number",
+      "default": 3000
+    },
+    "loop": {
+      "type": "boolean",
+      "default": true
+    },
+    "speed": {
+      "type": "number",
+      "default": 500
+    },
+    "slidesPerView": {
+      "type": "number",
+      "default": 1
+    },
+    "slidesPerViewTablet": {
+      "type": "number",
+      "default": 1
+    },
+    "slidesPerViewMobile": {
+      "type": "number",
+      "default": 1
+    },
+    "spaceBetween": {
+      "type": "number",
+      "default": 20
+    },
+    "effect": {
+      "type": "string",
+      "default": "slide"
+    }
+  },
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "customClassName": true,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  }
+}
+

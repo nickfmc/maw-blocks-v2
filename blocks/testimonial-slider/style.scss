@@ -1,0 +1,197 @@
+/**
+ * Testimonial Slider Block Styles
+ *
+ * Minimal functional styles only
+ * Updated for build tracking
+ */
+
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+
+.maw-testimonial-slider {
+  position: relative;
+  width: 100%;
+
+  &__container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__wrapper {
+    display: flex;
+    transition: transform var(--maw-transition-speed) var(--maw-transition-timing);
+  }
+
+  &__slide {
+    flex-shrink: 0;
+    width: 100%;
+    padding: var(--maw-spacing-md);
+    box-sizing: border-box;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--maw-spacing-sm);
+  }
+
+  &__image {
+    img {
+      display: block;
+      max-width: 100px;
+      height: auto;
+      border-radius: 50%;
+    }
+  }
+
+  &__rating {
+    color: var(--maw-color-primary);
+  }
+
+  &__stars {
+    font-size: 1.25rem;
+    letter-spacing: 0.125rem;
+  }
+
+  &__number {
+    font-weight: 600;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  &__quote {
+    margin: 0;
+    font-style: italic;
+    color: var(--maw-color-text);
+    quotes: '"' '"' "'" "'";
+
+    &::before {
+      content: open-quote;
+    }
+
+    &::after {
+      content: close-quote;
+    }
+  }
+
+  &__citation {
+    font-style: normal;
+    font-weight: 500;
+    color: var(--maw-color-text);
+    opacity: 0.8;
+  }
+
+  &__navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--maw-spacing-md);
+  }
+
+  &__arrow {
+    @include maw-reset-button;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--maw-nav-arrow-size);
+    height: var(--maw-nav-arrow-size);
+    color: var(--maw-nav-arrow-color);
+    background: transparent;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    transition: all var(--maw-transition-speed) var(--maw-transition-timing);
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    span {
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+  }
+
+  &__dots {
+    display: flex;
+    gap: var(--maw-spacing-xs);
+    align-items: center;
+    justify-content: center;
+    margin-top: var(--maw-spacing-sm);
+
+    &--below {
+      margin-top: var(--maw-spacing-md);
+    }
+
+    &--inside-bottom {
+      position: absolute;
+      bottom: var(--maw-spacing-md);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+
+    &--side {
+      flex-direction: column;
+      position: absolute;
+      right: var(--maw-spacing-md);
+      top: 50%;
+      transform: translateY(-50%);
+      margin-top: 0;
+    }
+  }
+
+  &__dot {
+    width: var(--maw-nav-dot-size);
+    height: var(--maw-nav-dot-size);
+    border-radius: 50%;
+    background: var(--maw-nav-dot-color);
+    opacity: 0.3;
+    cursor: pointer;
+    transition: opacity var(--maw-transition-speed) var(--maw-transition-timing);
+
+    &--active,
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &.maw-testimonial-slider--align-left &__content {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  &.maw-testimonial-slider--align-center &__content {
+    align-items: center;
+    text-align: center;
+  }
+
+  &.maw-testimonial-slider--align-right &__content {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  @include maw-responsive(mobile) {
+    &__slide {
+      padding: var(--maw-spacing-sm);
+    }
+
+    &__navigation {
+      margin-top: var(--maw-spacing-sm);
+    }
+
+    &__arrow {
+      width: calc(var(--maw-nav-arrow-size) * 0.8);
+      height: calc(var(--maw-nav-arrow-size) * 0.8);
+    }
+  }
+}
+

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "maw-blocks/video",
+  "version": "1.0.0",
+  "title": "MAW Video",
+  "category": "maw-blocks",
+  "icon": "video-alt3",
+  "description": "Viewport-aware video player with autoplay on scroll",
+  "keywords": ["video", "media", "autoplay", "viewport"],
+  "textdomain": "maw-blocks",
+  "editorScript": "file:../../build/blocks/video/index.js",
+  "editorStyle": "file:../../build/blocks/video/editor.css",
+  "style": "file:../../build/blocks/video/style-style.css",
+  "viewScript": "maw-blocks-video-view",
+  "attributes": {
+    "videoUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "videoId": {
+      "type": "number"
+    },
+    "posterUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "posterId": {
+      "type": "number"
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": true
+    },
+    "loop": {
+      "type": "boolean",
+      "default": true
+    },
+    "muted": {
+      "type": "boolean",
+      "default": true
+    },
+    "controls": {
+      "type": "boolean",
+      "default": false
+    },
+    "playOnce": {
+      "type": "boolean",
+      "default": false
+    },
+    "aspectRatio": {
+      "type": "string",
+      "default": "16:9"
+    }
+  },
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "customClassName": true,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  }
+}
+

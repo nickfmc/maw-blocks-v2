@@ -1,0 +1,36 @@
+/**
+ * MAW Blocks Variables
+ *
+ * CSS Custom Properties for easy theme overrides
+ * Minimal values for functionality only
+ */
+
+:root {
+  // Spacing
+  --maw-spacing-xs: 0.5rem;
+  --maw-spacing-sm: 1rem;
+  --maw-spacing-md: 1.5rem;
+  --maw-spacing-lg: 2rem;
+  --maw-spacing-xl: 3rem;
+
+  // Colors - Minimal defaults, override in theme
+  --maw-color-primary: #000000;
+  --maw-color-background: #ffffff;
+  --maw-color-text: #333333;
+  --maw-color-border: #dddddd;
+
+  // Navigation
+  --maw-nav-arrow-size: 2.5rem;
+  --maw-nav-arrow-color: var(--maw-color-primary);
+  --maw-nav-dot-size: 0.75rem;
+  --maw-nav-dot-color: var(--maw-color-primary);
+
+  // Transitions
+  --maw-transition-speed: 300ms;
+  --maw-transition-timing: ease-in-out;
+
+  // Breakpoints
+  --maw-breakpoint-mobile: 768px;
+  --maw-breakpoint-tablet: 1024px;
+}
+
