@@ -11,15 +11,15 @@ module.exports = {
     ...defaultConfig,
     entry: {
         'blocks/video/index': './blocks/video/index.js',
-        'blocks/video/style-style': './blocks/video/style.scss',
+        'blocks/video/style': './blocks/video/style.scss',
         'blocks/video/editor': './blocks/video/editor.scss',
         'blocks/video/frontend': './blocks/video/frontend.js',
         'blocks/slider/index': './blocks/slider/index.js',
-        'blocks/slider/style-style': './blocks/slider/style.scss',
+        'blocks/slider/style': './blocks/slider/style.scss',
         'blocks/slider/editor': './blocks/slider/editor.scss',
         'blocks/slider/frontend': './blocks/slider/frontend.js',
         'blocks/testimonial-slider/index': './blocks/testimonial-slider/index.js',
-        'blocks/testimonial-slider/style-style': './blocks/testimonial-slider/style.scss',
+        'blocks/testimonial-slider/style': './blocks/testimonial-slider/style.scss',
         'blocks/testimonial-slider/editor': './blocks/testimonial-slider/editor.scss',
         'blocks/testimonial-slider/frontend': './blocks/testimonial-slider/frontend.js',
         'editor': './assets/scss/editor.scss'
