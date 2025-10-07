@@ -5,10 +5,9 @@
  */
 
 @import 'variables';
+@import 'editor-panels';
 
-.maw-video,
-.maw-slider,
-.maw-testimonial-slider {
+.maw-video {
   border: 1px dashed var(--maw-color-border);
   padding: var(--maw-spacing-md);
   min-height: 200px;

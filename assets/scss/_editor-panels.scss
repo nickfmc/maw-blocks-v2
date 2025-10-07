@@ -1,0 +1,121 @@
+.components-panel {
+  .components-panel__body {
+    border-top: 1px solid #e8ecf1;
+
+    &.is-opened {
+      .components-panel__body-title {
+        background: linear-gradient(135deg, #f8f9fb 0%, #ffffff 100%);
+
+        button {
+          color: #1e293b;
+          font-weight: 600;
+
+          &:hover {
+            color: #3b82f6;
+          }
+        }
+      }
+    }
+
+    .components-panel__body-title {
+      transition: all 0.2s ease;
+
+      button {
+        padding: 16px;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+    }
+  }
+
+  .components-base-control {
+    margin-bottom: 20px;
+
+    .components-base-control__label {
+      font-weight: 600;
+      font-size: 12px;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      margin-bottom: 8px;
+    }
+  }
+
+  .components-toggle-control {
+    .components-base-control__field {
+      display: flex;
+      align-items: center;
+
+      .components-form-toggle {
+        margin-right: 12px;
+
+        &.is-checked {
+          .components-form-toggle__track {
+            background-color: #3b82f6;
+          }
+        }
+
+        .components-form-toggle__track {
+          border-radius: 12px;
+          transition: all 0.2s ease;
+        }
+      }
+    }
+  }
+
+  .components-select-control__input,
+  .components-text-control__input,
+  .components-input-control__input {
+    border: 2px solid #e8ecf1;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+
+    &:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+      outline: none;
+    }
+  }
+
+  .components-range-control {
+    .components-range-control__slider {
+      color: #3b82f6;
+    }
+
+    .components-input-control__input {
+      width: 70px;
+    }
+  }
+}
+
+.maw-testimonial-slider {
+  .components-panel {
+    .components-toggle-control {
+      .components-form-toggle {
+        &.is-checked {
+          .components-form-toggle__track {
+            background-color: #8b5cf6;
+          }
+        }
+      }
+    }
+
+    .components-select-control__input,
+    .components-text-control__input,
+    .components-input-control__input {
+      &:focus {
+        border-color: #8b5cf6;
+        box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+      }
+    }
+
+    .components-range-control {
+      .components-range-control__slider {
+        color: #8b5cf6;
+      }
+    }
+  }
+}

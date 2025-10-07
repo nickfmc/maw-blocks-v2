@@ -4,7 +4,7 @@
 
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls, InnerBlocks } from '@wordpress/block-editor';
-import { SelectControl } from '@wordpress/components';
+import { PanelBody, SelectControl } from '@wordpress/components';
 import { blockClass } from '../../src/shared/utils/classnames';
 import { NavigationPanel, SliderBehaviorPanel, ResponsivePanel } from '../../src/shared/components/BlockControls';
 
@@ -87,15 +87,17 @@ export default function Edit({ attributes, setAttributes }) {
                     settings={responsiveSettings}
                     onChange={(newSettings) => setAttributes(newSettings)}
                 />
-                <SelectControl
-                    label={__('Transition Effect', 'maw-blocks')}
-                    value={effect}
-                    options={[
-                        { label: __('Slide', 'maw-blocks'), value: 'slide' },
-                        { label: __('Fade', 'maw-blocks'), value: 'fade' }
-                    ]}
-                    onChange={(value) => setAttributes({ effect: value })}
-                />
+                <PanelBody title={__('Effects', 'maw-blocks')} initialOpen={false}>
+                    <SelectControl
+                        label={__('Transition Effect', 'maw-blocks')}
+                        value={effect}
+                        options={[
+                            { label: __('Slide', 'maw-blocks'), value: 'slide' },
+                            { label: __('Fade', 'maw-blocks'), value: 'fade' }
+                        ]}
+                        onChange={(value) => setAttributes({ effect: value })}
+                    />
+                </PanelBody>
             </InspectorControls>
 
             <div {...blockProps}>
