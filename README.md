@@ -28,7 +28,7 @@ MAW Blocks provides extensive functionality with minimal styling interference. E
 Viewport-aware video player with autoplay functionality.
 
 **Features:**
-- Autoplay when entering viewport
+- Autoplay when entering viewport 
 - Pause when leaving viewport
 - Play once or continuous mode
 - Poster image support
@@ -106,7 +106,7 @@ Specialized slider for testimonials with flexible field management.
   .maw-testimonial-slider__navigation
   .maw-testimonial-slider__arrow
   .maw-testimonial-slider__dots
-  .maw-testimonial-slider__dot
+  .maw-testimonial-slider__dot 
 .maw-testimonial-slider--align-left
 .maw-testimonial-slider--align-center
 .maw-testimonial-slider--align-right
@@ -348,6 +348,8 @@ import { AlignmentPanel, NavigationPanel } from '../../src/shared/components/Blo
 
 ### 6. Styling Guidelines
 
+#### Frontend Styles (style.scss)
+
 **Minimal Functional CSS Only:**
 ```scss
 @import '../../assets/scss/variables';
@@ -379,6 +381,96 @@ import { AlignmentPanel, NavigationPanel } from '../../src/shared/components/Blo
   }
 }
 ```
+
+#### Editor Styles (editor.scss)
+
+**CRITICAL:** Editor styles should provide a premium, polished admin experience that makes the plugin feel professional and consistent.
+
+**Required Editor Styling Pattern:**
+
+```scss
+@import '../../assets/scss/variables';
+
+.maw-block-name {
+  position: relative;
+  border: 2px solid #e8ecf1;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f8f9fb 0%, #ffffff 100%);
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+
+  // Hover state with brand color
+  &:hover {
+    border-color: #BRAND-COLOR;  // Unique per block
+    box-shadow: 0 4px 16px rgba(BRAND-COLOR-RGB, 0.12);
+  }
+
+  // Floating badge label
+  &::before {
+    content: 'Block Name';
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    padding: 4px 12px;
+    background: linear-gradient(135deg, #BRAND-COLOR 0%, #BRAND-COLOR-DARKER 100%);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(BRAND-COLOR-RGB, 0.3);
+  }
+
+  // Additional element styling...
+}
+```
+
+**Brand Color Assignments:**
+- Video Block: `#10b981` (Green)
+- Slider Block: `#3b82f6` (Blue)
+- Testimonial Slider: `#8b5cf6` (Purple)
+- Future blocks: Use distinct colors (orange, red, teal, etc.)
+
+**Editor Panel Styling:**
+
+Import the shared panel styles and customize focus colors:
+
+```scss
+.maw-block-name {
+  .components-panel {
+    .components-toggle-control {
+      .components-form-toggle {
+        &.is-checked {
+          .components-form-toggle__track {
+            background-color: #BRAND-COLOR;
+          }
+        }
+      }
+    }
+
+    .components-select-control__input,
+    .components-text-control__input,
+    .components-input-control__input {
+      &:focus {
+        border-color: #BRAND-COLOR;
+        box-shadow: 0 0 0 3px rgba(BRAND-COLOR-RGB, 0.1);
+      }
+    }
+  }
+}
+```
+
+**Editor Styling Requirements:**
+- Consistent gradient backgrounds
+- Smooth transitions and hover states
+- Floating badge labels with block name
+- Brand color differentiation per block
+- Polished form controls with focus states
+- Professional spacing and typography
+- Subtle shadows and depth
+- Visual feedback on all interactions
 
 ### 7. Global Defaults Support
 
@@ -449,7 +541,11 @@ When creating a new block, verify:
 - [ ] block.json complete with all attributes
 - [ ] Shared utilities imported (blockClass, elementClass)
 - [ ] InspectorControls use shared components where possible
-- [ ] SCSS only includes functional styles
+- [ ] Frontend SCSS only includes functional styles
+- [ ] Editor SCSS includes premium styling with brand color
+- [ ] Floating badge label added to editor styles
+- [ ] Gradient backgrounds and hover effects in editor
+- [ ] Panel controls styled with brand color focus states
 - [ ] SCSS imports variables and mixins
 - [ ] CSS custom properties used for theming
 - [ ] Global defaults support included
@@ -457,18 +553,22 @@ When creating a new block, verify:
 - [ ] Data attributes added for frontend JS
 - [ ] Block registered in main plugin file
 - [ ] Responsive styles included
-- [ ] Editor-specific styles separated
+- [ ] Editor-specific styles separated from frontend
 
 ## Common Mistakes to Avoid
 
 1. **Forgetting .maw- prefix** - Every class MUST start with .maw-
-2. **Adding decorative styles** - Only functional CSS in plugin
-3. **Hardcoding colors/fonts** - Use CSS custom properties
-4. **Skipping accessibility** - ARIA labels are required
-5. **Not using shared components** - Reuse InspectorControls panels
-6. **Missing data attributes** - Frontend JS needs these
-7. **Incomplete block.json** - All attributes must be defined
-8. **Not registering in main file** - Block won't load without it
+2. **Adding decorative styles to frontend** - Only functional CSS in style.scss
+3. **Generic editor styling** - Editor should look premium with brand colors
+4. **Missing floating badge label** - All blocks need the ::before badge
+5. **Inconsistent brand colors** - Each block type needs its own color
+6. **Hardcoding colors/fonts in frontend** - Use CSS custom properties
+7. **Skipping accessibility** - ARIA labels are required
+8. **Not using shared components** - Reuse InspectorControls panels
+9. **Missing panel focus styling** - Form controls need brand color focus states
+10. **Missing data attributes** - Frontend JS needs these
+11. **Incomplete block.json** - All attributes must be defined
+12. **Not registering in main file** - Block won't load without it
 
 ## Testing New Blocks
 
