@@ -129,6 +129,14 @@ class MAW_Blocks {
                 'icon' => 'format-quote',
                 'category' => 'maw-blocks',
                 'path' => 'blocks/testimonial-slider'
+            ],
+            'logo-carousel' => [
+                'name' => 'maw-blocks/logo-carousel',
+                'title' => 'MAW Logo Carousel',
+                'description' => 'Infinite NASCAR-style logo/image carousel',
+                'icon' => 'images-alt',
+                'category' => 'maw-blocks',
+                'path' => 'blocks/logo-carousel'
             ]
         ];
 

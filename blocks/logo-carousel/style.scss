@@ -1,0 +1,76 @@
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+
+.maw-logo-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  &__container {
+    position: relative;
+    width: 100%;
+  }
+
+  &__wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+  }
+
+  &__track {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    animation: maw-carousel-scroll var(--maw-carousel-speed, 30s) linear infinite;
+
+    .maw-logo-carousel--direction-right & {
+      animation-direction: reverse;
+    }
+  }
+
+  &__item {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--maw-carousel-logo-height, 60px);
+    padding: 0 calc(var(--maw-carousel-spacing, 40px) / 2);
+
+    img {
+      height: 100%;
+      width: auto;
+      max-width: none;
+      object-fit: contain;
+      display: block;
+    }
+  }
+
+  &--pause-on-hover {
+    .maw-logo-carousel__wrapper:hover .maw-logo-carousel__track {
+      animation-play-state: paused;
+    }
+  }
+}
+
+@keyframes maw-carousel-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

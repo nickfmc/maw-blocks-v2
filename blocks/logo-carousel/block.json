@@ -1,0 +1,63 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "maw-blocks/logo-carousel",
+  "version": "1.0.0",
+  "title": "MAW Logo Carousel",
+  "category": "maw-blocks",
+  "icon": "images-alt",
+  "description": "Infinite NASCAR-style logo/image carousel with responsive settings",
+  "keywords": ["logo", "carousel", "infinite", "marquee"],
+  "textdomain": "maw-blocks",
+  "editorScript": "file:../../build/blocks/logo-carousel/index.js",
+  "editorStyle": "file:../../build/blocks/logo-carousel/editor.css",
+  "style": "file:../../build/blocks/logo-carousel/style-index.css",
+  "viewScript": "maw-blocks-logo-carousel-view",
+  "attributes": {
+    "logos": {
+      "type": "array",
+      "default": []
+    },
+    "speed": {
+      "type": "number",
+      "default": 30
+    },
+    "direction": {
+      "type": "string",
+      "default": "left"
+    },
+    "pauseOnHover": {
+      "type": "boolean",
+      "default": true
+    },
+    "logosInView": {
+      "type": "number",
+      "default": 5
+    },
+    "logosInViewTablet": {
+      "type": "number",
+      "default": 3
+    },
+    "logosInViewMobile": {
+      "type": "number",
+      "default": 2
+    },
+    "logoHeight": {
+      "type": "number",
+      "default": 60
+    },
+    "spacing": {
+      "type": "number",
+      "default": 40
+    }
+  },
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "customClassName": true,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  }
+}

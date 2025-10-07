@@ -21,6 +21,10 @@ module.exports = {
         'blocks/testimonial-slider/style': './blocks/testimonial-slider/style.scss',
         'blocks/testimonial-slider/editor': './blocks/testimonial-slider/editor.scss',
         'blocks/testimonial-slider/frontend': './blocks/testimonial-slider/frontend.js',
+        'blocks/logo-carousel/index': './blocks/logo-carousel/index.js',
+        'blocks/logo-carousel/style': './blocks/logo-carousel/style.scss',
+        'blocks/logo-carousel/editor': './blocks/logo-carousel/editor.scss',
+        'blocks/logo-carousel/frontend': './blocks/logo-carousel/frontend.js',
         'editor': './assets/scss/editor.scss'
     },
     output: {
