@@ -1,0 +1,59 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "maw-blocks/number-counter",
+  "version": "1.0.0",
+  "title": "MAW Number Counter",
+  "category": "maw-blocks",
+  "icon": "chart-line",
+  "description": "Animated number counter with customizable prefixes and suffixes",
+  "keywords": ["counter", "number", "animation", "statistics"],
+  "textdomain": "maw-blocks",
+  "editorScript": "file:../../build/blocks/number-counter/index.js",
+  "editorStyle": "file:../../build/blocks/number-counter/editor.css",
+  "style": "file:../../build/blocks/number-counter/style-style.css",
+  "viewScript": "maw-blocks-number-counter-view",
+  "attributes": {
+    "number": {
+      "type": "number",
+      "default": 100
+    },
+    "prefix": {
+      "type": "string",
+      "default": ""
+    },
+    "suffix": {
+      "type": "string",
+      "default": ""
+    },
+    "duration": {
+      "type": "number",
+      "default": 2000
+    },
+    "label": {
+      "type": "string",
+      "default": ""
+    },
+    "alignment": {
+      "type": "string",
+      "default": "center"
+    },
+    "animateOnce": {
+      "type": "boolean",
+      "default": true
+    },
+    "startDelay": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "customClassName": true,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  }
+}

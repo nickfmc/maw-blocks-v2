@@ -1,0 +1,200 @@
+/**
+ * Number Counter Block Editor Styles
+ * Premium admin experience with brand color
+ */
+
+@import '../../assets/scss/variables';
+
+.maw-number-counter {
+  position: relative;
+  border: 2px solid #e8ecf1;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f8f9fb 0%, #ffffff 100%);
+  padding: 32px 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // Hover state with brand color (orange for stats/numbers)
+  &:hover {
+    border-color: #f97316;
+    box-shadow: 0 4px 16px rgba(249, 115, 22, 0.12);
+  }
+
+  // Floating badge label
+  &::before {
+    content: 'Number Counter';
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    padding: 4px 12px;
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(249, 115, 22, 0.3);
+    z-index: 1;
+  }
+
+  // Editor-specific wrapper styling
+  &__wrapper {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  // Enhanced display in editor
+  &__display {
+    background: rgba(249, 115, 22, 0.03);
+    padding: 16px 24px;
+    border-radius: 8px;
+    border: 1px solid rgba(249, 115, 22, 0.1);
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: rgba(249, 115, 22, 0.05);
+      border-color: rgba(249, 115, 22, 0.2);
+    }
+  }
+
+  // Number styling in editor
+  &__number {
+    color: #f97316;
+    font-weight: 800;
+    text-shadow: 0 2px 4px rgba(249, 115, 22, 0.1);
+  }
+
+  &__prefix,
+  &__suffix {
+    color: #ea580c;
+    font-weight: 700;
+  }
+
+  // Label in editor
+  &__label {
+    min-height: 24px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px dashed rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+
+    &:focus,
+    &:hover {
+      background: rgba(249, 115, 22, 0.03);
+      border-color: rgba(249, 115, 22, 0.2);
+      border-style: solid;
+    }
+
+    &:empty::before {
+      color: rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  // Panel styling with brand color
+  .components-panel {
+    .components-panel__body-title {
+      button {
+        &:hover,
+        &:focus {
+          background: rgba(249, 115, 22, 0.05);
+        }
+      }
+    }
+
+    .components-toggle-control {
+      .components-form-toggle {
+        &.is-checked {
+          .components-form-toggle__track {
+            background-color: #f97316;
+          }
+        }
+
+        &:hover:not(:disabled) {
+          .components-form-toggle__track {
+            border-color: #f97316;
+          }
+        }
+      }
+    }
+
+    .components-select-control__input,
+    .components-text-control__input,
+    .components-input-control__input,
+    .components-range-control__number {
+      &:focus {
+        border-color: #f97316;
+        box-shadow: 0 0 0 1px #f97316;
+        outline: 2px solid transparent;
+        outline-offset: -2px;
+      }
+    }
+
+    .components-range-control__slider {
+      &::-webkit-slider-thumb {
+        background-color: #f97316;
+        border-color: #f97316;
+
+        &:hover {
+          background-color: #ea580c;
+          border-color: #ea580c;
+        }
+      }
+
+      &::-moz-range-thumb {
+        background-color: #f97316;
+        border-color: #f97316;
+
+        &:hover {
+          background-color: #ea580c;
+          border-color: #ea580c;
+        }
+      }
+
+      &:focus {
+        &::-webkit-slider-thumb {
+          box-shadow: 0 0 0 2px #fff, 0 0 0 4px #f97316;
+        }
+
+        &::-moz-range-thumb {
+          box-shadow: 0 0 0 2px #fff, 0 0 0 4px #f97316;
+        }
+      }
+    }
+  }
+
+  // Selected state
+  &.is-selected {
+    border-color: #f97316;
+    box-shadow: 0 6px 20px rgba(249, 115, 22, 0.15);
+
+    &::before {
+      box-shadow: 0 3px 6px rgba(249, 115, 22, 0.4);
+    }
+  }
+
+  // Alignment modifiers in editor
+  &--align-left {
+    .maw-number-counter__wrapper {
+      text-align: left;
+    }
+  }
+
+  &--align-center {
+    .maw-number-counter__wrapper {
+      text-align: center;
+    }
+  }
+
+  &--align-right {
+    .maw-number-counter__wrapper {
+      text-align: right;
+    }
+  }
+}

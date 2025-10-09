@@ -137,6 +137,14 @@ class MAW_Blocks {
                 'icon' => 'images-alt',
                 'category' => 'maw-blocks',
                 'path' => 'blocks/logo-carousel'
+            ],
+            'number-counter' => [
+                'name' => 'maw-blocks/number-counter',
+                'title' => 'MAW Number Counter',
+                'description' => 'Animated number counter with customizable prefixes and suffixes',
+                'icon' => 'chart-line',
+                'category' => 'maw-blocks',
+                'path' => 'blocks/number-counter'
             ]
         ];
 

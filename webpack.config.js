@@ -25,6 +25,10 @@ module.exports = {
         'blocks/logo-carousel/style': './blocks/logo-carousel/style.scss',
         'blocks/logo-carousel/editor': './blocks/logo-carousel/editor.scss',
         'blocks/logo-carousel/frontend': './blocks/logo-carousel/frontend.js',
+        'blocks/number-counter/index': './blocks/number-counter/index.js',
+        'blocks/number-counter/style': './blocks/number-counter/style.scss',
+        'blocks/number-counter/editor': './blocks/number-counter/editor.scss',
+        'blocks/number-counter/frontend': './blocks/number-counter/frontend.js',
         'editor': './assets/scss/editor.scss'
     },
     output: {
