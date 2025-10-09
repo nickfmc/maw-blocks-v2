@@ -1,0 +1,107 @@
+/**
+ * Number Counter Block Frontend Styles
+ * Minimal functional CSS only
+ */
+
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+
+.maw-number-counter {
+  display: block;
+  width: 100%;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--maw-spacing-sm, 1rem);
+  }
+
+  &__display {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.25em;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--maw-color-text, #333333);
+  }
+
+  &__prefix,
+  &__suffix {
+    font-size: 0.6em;
+    opacity: 0.8;
+  }
+
+  &__number {
+    font-variant-numeric: tabular-nums;
+    min-width: 1ch;
+  }
+
+  &__label {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--maw-color-text, #333333);
+    opacity: 0.7;
+  }
+
+  // Alignment modifiers
+  &--align-left {
+    text-align: left;
+
+    .maw-number-counter__wrapper {
+      align-items: flex-start;
+    }
+
+    .maw-number-counter__display {
+      justify-content: flex-start;
+    }
+
+    .maw-number-counter__label {
+      text-align: left;
+    }
+  }
+
+  &--align-center {
+    text-align: center;
+
+    .maw-number-counter__wrapper {
+      align-items: center;
+    }
+
+    .maw-number-counter__display {
+      justify-content: center;
+    }
+
+    .maw-number-counter__label {
+      text-align: center;
+    }
+  }
+
+  &--align-right {
+    text-align: right;
+
+    .maw-number-counter__wrapper {
+      align-items: flex-end;
+    }
+
+    .maw-number-counter__display {
+      justify-content: flex-end;
+    }
+
+    .maw-number-counter__label {
+      text-align: right;
+    }
+  }
+
+  // Responsive adjustments
+  @include maw-responsive(mobile) {
+    .maw-number-counter__display {
+      font-size: 2rem;
+    }
+
+    .maw-number-counter__label {
+      font-size: 0.875rem;
+    }
+  }
+}
