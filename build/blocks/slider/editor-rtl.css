@@ -1,1 +1,161 @@
-:root{--maw-spacing-xs:0.5rem;--maw-spacing-sm:1rem;--maw-spacing-md:1.5rem;--maw-spacing-lg:2rem;--maw-spacing-xl:3rem;--maw-color-primary:#000;--maw-color-background:#fff;--maw-color-text:#333;--maw-color-border:#ddd;--maw-nav-arrow-size:2.5rem;--maw-nav-arrow-color:var(--maw-color-primary);--maw-nav-dot-size:0.75rem;--maw-nav-dot-color:var(--maw-color-primary);--maw-transition-speed:300ms;--maw-transition-timing:ease-in-out;--maw-breakpoint-mobile:768px;--maw-breakpoint-tablet:1024px}.maw-slider{background:linear-gradient(-135deg,#f8f9fb,#fff);border:2px solid #e8ecf1;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.04);padding:24px;position:relative;transition:all .3s ease}.maw-slider:hover{border-color:#3b82f6;box-shadow:0 4px 16px rgba(59,130,246,.12)}.maw-slider:before{background:linear-gradient(-135deg,#3b82f6,#2563eb);border-radius:6px;box-shadow:0 2px 4px rgba(59,130,246,.3);color:#fff;content:"Slider Block";font-size:11px;font-weight:600;right:20px;letter-spacing:.5px;padding:4px 12px;position:absolute;text-transform:uppercase;top:-12px}.maw-slider__wrapper{background:#fff;border:1px dashed #cbd5e1;border-radius:8px;display:block;margin-top:12px;min-height:200px;padding:20px}.maw-slider .block-editor-inner-blocks{margin-bottom:var(--maw-spacing-md)}.maw-slider__navigation{right:0;pointer-events:none;position:absolute;left:0;top:50%;transform:translateY(-50%);z-index:1}.maw-slider__arrow{background:rgba(59,130,246,.9);border:none;border-radius:50%;box-shadow:0 2px 8px rgba(59,130,246,.3);color:#fff;cursor:not-allowed;font-size:0;height:40px;pointer-events:auto;position:absolute;top:0;transition:all .2s ease;width:40px}.maw-slider__arrow:before{border-left:2px solid #fff;border-top:2px solid #fff;content:"";height:12px;right:50%;position:absolute;top:50%;transform:translate(50%,-50%);width:12px}.maw-slider__arrow--prev{right:12px}.maw-slider__arrow--prev:before{transform:translate(40%,-50%) rotate(135deg)}.maw-slider__arrow--next{left:12px}.maw-slider__arrow--next:before{transform:translate(60%,-50%) rotate(-45deg)}.maw-slider__arrow:hover{background:#2563eb;transform:scale(1.1)}.maw-slider__dots{align-items:center;display:flex;gap:8px;justify-content:center;padding:16px 0}.maw-slider__dots--below{margin-top:12px;position:relative}.maw-slider__dots--inside-bottom{bottom:20px;right:0;position:absolute;left:0}.maw-slider__dots--side{flex-direction:column;position:absolute;left:-60px;top:50%;transform:translateY(-50%)}.maw-slider__dot{background:#cbd5e1;border-radius:50%;box-shadow:0 1px 3px rgba(0,0,0,.1);height:10px;transition:all .3s ease;width:10px}.maw-slider__dot--active{background:#3b82f6;box-shadow:0 2px 6px rgba(59,130,246,.4);height:12px;width:12px}
+/*!**************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./blocks/slider/editor.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************/
+/**
+ * Slider Block Editor Styles
+ */
+/**
+ * MAW Blocks Variables
+ *
+ * CSS Custom Properties for easy theme overrides
+ * Minimal values for functionality only
+ */
+:root {
+  --maw-spacing-xs: 0.5rem;
+  --maw-spacing-sm: 1rem;
+  --maw-spacing-md: 1.5rem;
+  --maw-spacing-lg: 2rem;
+  --maw-spacing-xl: 3rem;
+  --maw-color-primary: #000000;
+  --maw-color-background: #ffffff;
+  --maw-color-text: #333333;
+  --maw-color-border: #dddddd;
+  --maw-nav-arrow-size: 2.5rem;
+  --maw-nav-arrow-color: var(--maw-color-primary);
+  --maw-nav-dot-size: 0.75rem;
+  --maw-nav-dot-color: var(--maw-color-primary);
+  --maw-transition-speed: 300ms;
+  --maw-transition-timing: ease-in-out;
+  --maw-breakpoint-mobile: 768px;
+  --maw-breakpoint-tablet: 1024px;
+}
+
+.maw-slider {
+  position: relative;
+  border: 2px solid #e8ecf1;
+  border-radius: 12px;
+  background: linear-gradient(-135deg, #f8f9fb 0%, #ffffff 100%);
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+.maw-slider:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.12);
+}
+.maw-slider::before {
+  content: "Slider Block";
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  padding: 4px 12px;
+  background: linear-gradient(-135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+}
+.maw-slider__wrapper {
+  display: block;
+  margin-top: 12px;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  border: 1px dashed #cbd5e1;
+  min-height: 200px;
+}
+.maw-slider .block-editor-inner-blocks {
+  margin-bottom: var(--maw-spacing-md);
+}
+.maw-slider__navigation {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 1;
+}
+.maw-slider__arrow {
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  background: rgba(59, 130, 246, 0.9);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 0;
+  cursor: not-allowed;
+  pointer-events: auto;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  transition: all 0.2s ease;
+}
+.maw-slider__arrow::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-top: 2px solid white;
+  border-left: 2px solid white;
+}
+.maw-slider__arrow--prev {
+  right: 12px;
+}
+.maw-slider__arrow--prev::before {
+  transform: translate(40%, -50%) rotate(135deg);
+}
+.maw-slider__arrow--next {
+  left: 12px;
+}
+.maw-slider__arrow--next::before {
+  transform: translate(60%, -50%) rotate(-45deg);
+}
+.maw-slider__arrow:hover {
+  background: rgb(37, 99, 235);
+  transform: scale(1.1);
+}
+.maw-slider__dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 0;
+}
+.maw-slider__dots--below {
+  position: relative;
+  margin-top: 12px;
+}
+.maw-slider__dots--inside-bottom {
+  position: absolute;
+  bottom: 20px;
+  right: 0;
+  left: 0;
+}
+.maw-slider__dots--side {
+  position: absolute;
+  left: -60px;
+  top: 50%;
+  transform: translateY(-50%);
+  flex-direction: column;
+}
+.maw-slider__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.maw-slider__dot--active {
+  background: #3b82f6;
+  width: 12px;
+  height: 12px;
+  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.4);
+}
