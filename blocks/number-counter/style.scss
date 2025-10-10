@@ -47,8 +47,6 @@
 
   // Alignment modifiers
   &--align-left {
-    text-align: left;
-
     .maw-number-counter__wrapper {
       align-items: flex-start;
     }
@@ -63,8 +61,6 @@
   }
 
   &--align-center {
-    text-align: center;
-
     .maw-number-counter__wrapper {
       align-items: center;
     }
@@ -79,8 +75,6 @@
   }
 
   &--align-right {
-    text-align: right;
-
     .maw-number-counter__wrapper {
       align-items: flex-end;
     }

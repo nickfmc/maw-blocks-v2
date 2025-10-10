@@ -1,1 +1,201 @@
-:root{--maw-spacing-xs:0.5rem;--maw-spacing-sm:1rem;--maw-spacing-md:1.5rem;--maw-spacing-lg:2rem;--maw-spacing-xl:3rem;--maw-color-primary:#000;--maw-color-background:#fff;--maw-color-text:#333;--maw-color-border:#ddd;--maw-nav-arrow-size:2.5rem;--maw-nav-arrow-color:var(--maw-color-primary);--maw-nav-dot-size:0.75rem;--maw-nav-dot-color:var(--maw-color-primary);--maw-transition-speed:300ms;--maw-transition-timing:ease-in-out;--maw-breakpoint-mobile:768px;--maw-breakpoint-tablet:1024px}.maw-testimonial-slider{position:relative;width:100%}.maw-testimonial-slider__container{overflow:hidden;position:relative}.maw-testimonial-slider__wrapper{display:flex;transition:transform var(--maw-transition-speed) var(--maw-transition-timing)}.maw-testimonial-slider__slide{box-sizing:border-box;flex-shrink:0;padding:var(--maw-spacing-md);width:100%}.maw-testimonial-slider__content{display:flex;flex-direction:column;gap:var(--maw-spacing-sm)}.maw-testimonial-slider__image img{border-radius:50%;display:block;height:auto;max-width:100px}.maw-testimonial-slider__rating{color:var(--maw-color-primary)}.maw-testimonial-slider__stars{font-size:1.25rem;letter-spacing:.125rem}.maw-testimonial-slider__number{font-weight:600}.maw-testimonial-slider__title{font-size:1.25rem;font-weight:600;margin:0}.maw-testimonial-slider__quote{color:var(--maw-color-text);font-style:italic;margin:0;quotes:'"' '"' "'" "'"}.maw-testimonial-slider__quote:before{content:open-quote}.maw-testimonial-slider__quote:after{content:close-quote}.maw-testimonial-slider__citation{color:var(--maw-color-text);font-style:normal;font-weight:500;opacity:.8}.maw-testimonial-slider__navigation{display:flex;justify-content:space-between;margin-top:var(--maw-spacing-md)}.maw-testimonial-slider__arrow{align-items:center;background:none;background:transparent;border:1px solid;border-radius:50%;color:var(--maw-nav-arrow-color);cursor:pointer;display:flex;font:inherit;height:var(--maw-nav-arrow-size);justify-content:center;margin:0;outline:inherit;padding:0;transition:all var(--maw-transition-speed) var(--maw-transition-timing);width:var(--maw-nav-arrow-size)}.maw-testimonial-slider__arrow:hover{opacity:.7}.maw-testimonial-slider__arrow:disabled{cursor:not-allowed;opacity:.3}.maw-testimonial-slider__arrow span{font-size:1.5rem;line-height:1}.maw-testimonial-slider__dots{align-items:center;display:flex;gap:var(--maw-spacing-xs);justify-content:center;margin-top:var(--maw-spacing-sm)}.maw-testimonial-slider__dots--below{margin-top:var(--maw-spacing-md)}.maw-testimonial-slider__dots--inside-bottom{bottom:var(--maw-spacing-md);left:50%;position:absolute;transform:translateX(-50%);z-index:10}.maw-testimonial-slider__dots--side{flex-direction:column;margin-top:0;position:absolute;right:var(--maw-spacing-md);top:50%;transform:translateY(-50%)}.maw-testimonial-slider__dot{background:var(--maw-nav-dot-color);border-radius:50%;cursor:pointer;height:var(--maw-nav-dot-size);opacity:.3;transition:opacity var(--maw-transition-speed) var(--maw-transition-timing);width:var(--maw-nav-dot-size)}.maw-testimonial-slider__dot--active,.maw-testimonial-slider__dot:hover{opacity:1}.maw-testimonial-slider.maw-testimonial-slider--align-left .maw-testimonial-slider__content{align-items:flex-start;text-align:left}.maw-testimonial-slider.maw-testimonial-slider--align-center .maw-testimonial-slider__content{align-items:center;text-align:center}.maw-testimonial-slider.maw-testimonial-slider--align-right .maw-testimonial-slider__content{align-items:flex-end;text-align:right}@media(max-width:767px){.maw-testimonial-slider__slide{padding:var(--maw-spacing-sm)}.maw-testimonial-slider__navigation{margin-top:var(--maw-spacing-sm)}.maw-testimonial-slider__arrow{height:calc(var(--maw-nav-arrow-size)*.8);width:calc(var(--maw-nav-arrow-size)*.8)}}
+/*!*************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./blocks/testimonial-slider/style.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************/
+/**
+ * Testimonial Slider Block Styles
+ *
+ * Minimal functional styles only
+ * Updated for build tracking
+ */
+/**
+ * MAW Blocks Variables
+ *
+ * CSS Custom Properties for easy theme overrides
+ * Minimal values for functionality only
+ */
+:root {
+  --maw-spacing-xs: 0.5rem;
+  --maw-spacing-sm: 1rem;
+  --maw-spacing-md: 1.5rem;
+  --maw-spacing-lg: 2rem;
+  --maw-spacing-xl: 3rem;
+  --maw-color-primary: #000000;
+  --maw-color-background: #ffffff;
+  --maw-color-text: #333333;
+  --maw-color-border: #dddddd;
+  --maw-nav-arrow-size: 2.5rem;
+  --maw-nav-arrow-color: var(--maw-color-primary);
+  --maw-nav-dot-size: 0.75rem;
+  --maw-nav-dot-color: var(--maw-color-primary);
+  --maw-transition-speed: 300ms;
+  --maw-transition-timing: ease-in-out;
+  --maw-breakpoint-mobile: 768px;
+  --maw-breakpoint-tablet: 1024px;
+}
+
+/**
+ * MAW Blocks Mixins
+ *
+ * Reusable SCSS mixins for consistent styling
+ */
+.maw-testimonial-slider {
+  position: relative;
+  width: 100%;
+}
+.maw-testimonial-slider__container {
+  position: relative;
+  overflow: hidden;
+}
+.maw-testimonial-slider__wrapper {
+  display: flex;
+  transition: transform var(--maw-transition-speed) var(--maw-transition-timing);
+}
+.maw-testimonial-slider__slide {
+  flex-shrink: 0;
+  width: 100%;
+  padding: var(--maw-spacing-md);
+  box-sizing: border-box;
+}
+.maw-testimonial-slider__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--maw-spacing-sm);
+}
+.maw-testimonial-slider__image img {
+  display: block;
+  max-width: 100px;
+  height: auto;
+  border-radius: 50%;
+}
+.maw-testimonial-slider__rating {
+  color: var(--maw-color-primary);
+}
+.maw-testimonial-slider__stars {
+  font-size: 1.25rem;
+  letter-spacing: 0.125rem;
+}
+.maw-testimonial-slider__number {
+  font-weight: 600;
+}
+.maw-testimonial-slider__title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.maw-testimonial-slider__quote {
+  margin: 0;
+  font-style: italic;
+  color: var(--maw-color-text);
+  quotes: '"' '"' "'" "'";
+}
+.maw-testimonial-slider__quote::before {
+  content: open-quote;
+}
+.maw-testimonial-slider__quote::after {
+  content: close-quote;
+}
+.maw-testimonial-slider__citation {
+  font-style: normal;
+  font-weight: 500;
+  color: var(--maw-color-text);
+  opacity: 0.8;
+}
+.maw-testimonial-slider__navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--maw-spacing-md);
+}
+.maw-testimonial-slider__arrow {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--maw-nav-arrow-size);
+  height: var(--maw-nav-arrow-size);
+  color: var(--maw-nav-arrow-color);
+  background: transparent;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  transition: all var(--maw-transition-speed) var(--maw-transition-timing);
+  cursor: pointer;
+}
+.maw-testimonial-slider__arrow:hover {
+  opacity: 0.7;
+}
+.maw-testimonial-slider__arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.maw-testimonial-slider__arrow span {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+.maw-testimonial-slider__dots {
+  display: flex;
+  gap: var(--maw-spacing-xs);
+  align-items: center;
+  justify-content: center;
+  margin-top: var(--maw-spacing-sm);
+}
+.maw-testimonial-slider__dots--below {
+  margin-top: var(--maw-spacing-md);
+}
+.maw-testimonial-slider__dots--inside-bottom {
+  position: absolute;
+  bottom: var(--maw-spacing-md);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+.maw-testimonial-slider__dots--side {
+  flex-direction: column;
+  position: absolute;
+  right: var(--maw-spacing-md);
+  top: 50%;
+  transform: translateY(-50%);
+  margin-top: 0;
+}
+.maw-testimonial-slider__dot {
+  width: var(--maw-nav-dot-size);
+  height: var(--maw-nav-dot-size);
+  border-radius: 50%;
+  background: var(--maw-nav-dot-color);
+  opacity: 0.3;
+  cursor: pointer;
+  transition: opacity var(--maw-transition-speed) var(--maw-transition-timing);
+}
+.maw-testimonial-slider__dot--active, .maw-testimonial-slider__dot:hover {
+  opacity: 1;
+}
+.maw-testimonial-slider.maw-testimonial-slider--align-left .maw-testimonial-slider__content {
+  align-items: flex-start;
+  text-align: left;
+}
+.maw-testimonial-slider.maw-testimonial-slider--align-center .maw-testimonial-slider__content {
+  align-items: center;
+  text-align: center;
+}
+.maw-testimonial-slider.maw-testimonial-slider--align-right .maw-testimonial-slider__content {
+  align-items: flex-end;
+  text-align: right;
+}
+@media (max-width: 767px) {
+  .maw-testimonial-slider__slide {
+    padding: var(--maw-spacing-sm);
+  }
+  .maw-testimonial-slider__navigation {
+    margin-top: var(--maw-spacing-sm);
+  }
+  .maw-testimonial-slider__arrow {
+    width: calc(var(--maw-nav-arrow-size) * 0.8);
+    height: calc(var(--maw-nav-arrow-size) * 0.8);
+  }
+}
+
+/*# sourceMappingURL=style-style.css.map*/
