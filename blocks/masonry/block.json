@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "maw-blocks/masonry",
+  "version": "1.0.0",
+  "title": "MAW Masonry",
+  "category": "layout",
+  "icon": "grid-view",
+  "description": "Flexible masonry layout with true JavaScript positioning for any inner blocks",
+  "keywords": ["masonry", "grid", "layout", "pinterest"],
+  "textdomain": "maw-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./editor.css",
+  "style": "file:./style.css",
+  "viewScript": "file:./frontend.js",
+  "attributes": {
+    "columns": {
+      "type": "number",
+      "default": 3
+    },
+    "columnsMobile": {
+      "type": "number",
+      "default": 1
+    },
+    "columnsTablet": {
+      "type": "number",
+      "default": 2
+    },
+    "gap": {
+      "type": "number",
+      "default": 20
+    },
+    "gapMobile": {
+      "type": "number",
+      "default": 15
+    },
+    "gapTablet": {
+      "type": "number",
+      "default": 18
+    }
+  },
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "customClassName": true,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  }
+}

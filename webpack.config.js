@@ -29,6 +29,10 @@ module.exports = {
         'blocks/number-counter/style': './blocks/number-counter/style.scss',
         'blocks/number-counter/editor': './blocks/number-counter/editor.scss',
         'blocks/number-counter/frontend': './blocks/number-counter/frontend.js',
+        'blocks/masonry/index': './blocks/masonry/index.js',
+        'blocks/masonry/style': './blocks/masonry/style.scss',
+        'blocks/masonry/editor': './blocks/masonry/editor.scss',
+        'blocks/masonry/frontend': './blocks/masonry/frontend.js',
         'editor': './assets/scss/editor.scss'
     },
     output: {

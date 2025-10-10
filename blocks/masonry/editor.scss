@@ -1,0 +1,79 @@
+@import '../../assets/scss/variables';
+
+.maw-masonry {
+	position: relative;
+	border: 2px solid #e8ecf1;
+	border-radius: 12px;
+	background: linear-gradient(135deg, #f8f9fb 0%, #ffffff 100%);
+	padding: 24px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+	transition: all 0.3s ease;
+	min-height: 200px;
+
+	&:hover {
+		border-color: #f59e0b;
+		box-shadow: 0 4px 16px rgba(245, 158, 11, 0.12);
+	}
+
+	&::before {
+		content: 'Masonry Layout';
+		position: absolute;
+		top: -12px;
+		left: 20px;
+		padding: 4px 12px;
+		background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+		color: white;
+		font-size: 11px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		border-radius: 6px;
+		box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+		z-index: 10;
+	}
+
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(var(--maw-masonry-columns, 3), 1fr);
+		gap: var(--maw-masonry-gap, 20px);
+
+		> .block-editor-block-list__block {
+			margin: 0;
+		}
+	}
+
+	.components-panel {
+		.components-range-control {
+			.components-input-control__input {
+				&:focus {
+					border-color: #f59e0b;
+					box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+				}
+			}
+
+			.components-range-control__slider {
+				&::-webkit-slider-thumb {
+					&:hover,
+					&:focus {
+						background-color: #f59e0b;
+						box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.15);
+					}
+				}
+
+				&::-moz-range-thumb {
+					&:hover,
+					&:focus {
+						background-color: #f59e0b;
+						box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.15);
+					}
+				}
+			}
+		}
+	}
+}
+
+.block-editor-block-preview__content .maw-masonry {
+	&::before {
+		display: none;
+	}
+}

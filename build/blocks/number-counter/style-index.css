@@ -1,1 +1,108 @@
-:root{--maw-spacing-xs:0.5rem;--maw-spacing-sm:1rem;--maw-spacing-md:1.5rem;--maw-spacing-lg:2rem;--maw-spacing-xl:3rem;--maw-color-primary:#000;--maw-color-background:#fff;--maw-color-text:#333;--maw-color-border:#ddd;--maw-nav-arrow-size:2.5rem;--maw-nav-arrow-color:var(--maw-color-primary);--maw-nav-dot-size:0.75rem;--maw-nav-dot-color:var(--maw-color-primary);--maw-transition-speed:300ms;--maw-transition-timing:ease-in-out;--maw-breakpoint-mobile:768px;--maw-breakpoint-tablet:1024px}.maw-number-counter{display:block;width:100%}.maw-number-counter__wrapper{display:flex;flex-direction:column;gap:var(--maw-spacing-sm,1rem)}.maw-number-counter__display{align-items:baseline;color:var(--maw-color-text,#333);display:flex;font-size:3rem;font-weight:700;gap:.25em;justify-content:center;line-height:1.2}.maw-number-counter__prefix,.maw-number-counter__suffix{font-size:.6em;opacity:.8}.maw-number-counter__number{font-variant-numeric:tabular-nums;min-width:1ch}.maw-number-counter__label{color:var(--maw-color-text,#333);font-size:1rem;line-height:1.5;opacity:.7}.maw-number-counter--align-left{text-align:left}.maw-number-counter--align-left .maw-number-counter__wrapper{align-items:flex-start}.maw-number-counter--align-left .maw-number-counter__display{justify-content:flex-start}.maw-number-counter--align-left .maw-number-counter__label{text-align:left}.maw-number-counter--align-center{text-align:center}.maw-number-counter--align-center .maw-number-counter__wrapper{align-items:center}.maw-number-counter--align-center .maw-number-counter__display{justify-content:center}.maw-number-counter--align-center .maw-number-counter__label{text-align:center}.maw-number-counter--align-right{text-align:right}.maw-number-counter--align-right .maw-number-counter__wrapper{align-items:flex-end}.maw-number-counter--align-right .maw-number-counter__display{justify-content:flex-end}.maw-number-counter--align-right .maw-number-counter__label{text-align:right}@media(max-width:767px){.maw-number-counter .maw-number-counter__display{font-size:2rem}.maw-number-counter .maw-number-counter__label{font-size:.875rem}}
+/*!*********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./blocks/number-counter/style.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************************/
+/**
+ * Number Counter Block Frontend Styles
+ * Minimal functional CSS only
+ */
+/**
+ * MAW Blocks Variables
+ *
+ * CSS Custom Properties for easy theme overrides
+ * Minimal values for functionality only
+ */
+:root {
+  --maw-spacing-xs: 0.5rem;
+  --maw-spacing-sm: 1rem;
+  --maw-spacing-md: 1.5rem;
+  --maw-spacing-lg: 2rem;
+  --maw-spacing-xl: 3rem;
+  --maw-color-primary: #000000;
+  --maw-color-background: #ffffff;
+  --maw-color-text: #333333;
+  --maw-color-border: #dddddd;
+  --maw-nav-arrow-size: 2.5rem;
+  --maw-nav-arrow-color: var(--maw-color-primary);
+  --maw-nav-dot-size: 0.75rem;
+  --maw-nav-dot-color: var(--maw-color-primary);
+  --maw-transition-speed: 300ms;
+  --maw-transition-timing: ease-in-out;
+  --maw-breakpoint-mobile: 768px;
+  --maw-breakpoint-tablet: 1024px;
+}
+
+/**
+ * MAW Blocks Mixins
+ *
+ * Reusable SCSS mixins for consistent styling
+ */
+.maw-number-counter {
+  display: block;
+  width: 100%;
+}
+.maw-number-counter__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--maw-spacing-sm, 1rem);
+}
+.maw-number-counter__display {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.25em;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--maw-color-text, #333333);
+}
+.maw-number-counter__prefix, .maw-number-counter__suffix {
+  font-size: 0.6em;
+  opacity: 0.8;
+}
+.maw-number-counter__number {
+  font-variant-numeric: tabular-nums;
+  min-width: 1ch;
+}
+.maw-number-counter__label {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--maw-color-text, #333333);
+  opacity: 0.7;
+}
+.maw-number-counter--align-left .maw-number-counter__wrapper {
+  align-items: flex-start;
+}
+.maw-number-counter--align-left .maw-number-counter__display {
+  justify-content: flex-start;
+}
+.maw-number-counter--align-left .maw-number-counter__label {
+  text-align: left;
+}
+.maw-number-counter--align-center .maw-number-counter__wrapper {
+  align-items: center;
+}
+.maw-number-counter--align-center .maw-number-counter__display {
+  justify-content: center;
+}
+.maw-number-counter--align-center .maw-number-counter__label {
+  text-align: center;
+}
+.maw-number-counter--align-right .maw-number-counter__wrapper {
+  align-items: flex-end;
+}
+.maw-number-counter--align-right .maw-number-counter__display {
+  justify-content: flex-end;
+}
+.maw-number-counter--align-right .maw-number-counter__label {
+  text-align: right;
+}
+@media (max-width: 767px) {
+  .maw-number-counter .maw-number-counter__display {
+    font-size: 2rem;
+  }
+  .maw-number-counter .maw-number-counter__label {
+    font-size: 0.875rem;
+  }
+}
+
+/*# sourceMappingURL=style-index.css.map*/

@@ -145,6 +145,14 @@ class MAW_Blocks {
                 'icon' => 'chart-line',
                 'category' => 'maw-blocks',
                 'path' => 'blocks/number-counter'
+            ],
+            'masonry' => [
+                'name' => 'maw-blocks/masonry',
+                'title' => 'MAW Masonry',
+                'description' => 'Flexible masonry layout with true JavaScript positioning',
+                'icon' => 'grid-view',
+                'category' => 'maw-blocks',
+                'path' => 'blocks/masonry'
             ]
         ];
 
