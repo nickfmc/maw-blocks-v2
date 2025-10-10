@@ -6,7 +6,7 @@ A feature-rich, style-light WordPress Gutenberg blocks plugin designed for custo
 
 **Feature-Rich, Style-Light**
 
-MAW Blocks provides extensive functionality with minimal styling interference. Every block includes only the CSS necessary for core functionality, making it trivial to style blocks to match any theme design.
+MAW Blocks provides extensive functionality with minimal styling interference. Every block includes only the CSS necessary for core functionality, making it easy to style blocks to match any theme design.
 
 ## Core Principles
 
