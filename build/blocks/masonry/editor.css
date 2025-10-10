@@ -1,0 +1,85 @@
+/*!***************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./blocks/masonry/editor.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************/
+/**
+ * MAW Blocks Variables
+ *
+ * CSS Custom Properties for easy theme overrides
+ * Minimal values for functionality only
+ */
+:root {
+  --maw-spacing-xs: 0.5rem;
+  --maw-spacing-sm: 1rem;
+  --maw-spacing-md: 1.5rem;
+  --maw-spacing-lg: 2rem;
+  --maw-spacing-xl: 3rem;
+  --maw-color-primary: #000000;
+  --maw-color-background: #ffffff;
+  --maw-color-text: #333333;
+  --maw-color-border: #dddddd;
+  --maw-nav-arrow-size: 2.5rem;
+  --maw-nav-arrow-color: var(--maw-color-primary);
+  --maw-nav-dot-size: 0.75rem;
+  --maw-nav-dot-color: var(--maw-color-primary);
+  --maw-transition-speed: 300ms;
+  --maw-transition-timing: ease-in-out;
+  --maw-breakpoint-mobile: 768px;
+  --maw-breakpoint-tablet: 1024px;
+}
+
+.maw-masonry {
+  position: relative;
+  border: 2px solid #e8ecf1;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f8f9fb 0%, #ffffff 100%);
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  min-height: 200px;
+}
+.maw-masonry:hover {
+  border-color: #f59e0b;
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.12);
+}
+.maw-masonry::before {
+  content: "Masonry Layout";
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  padding: 4px 12px;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(245, 158, 11, 0.3);
+  z-index: 10;
+}
+.maw-masonry__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--maw-masonry-columns, 3), 1fr);
+  gap: var(--maw-masonry-gap, 20px);
+}
+.maw-masonry__grid > .block-editor-block-list__block {
+  margin: 0;
+}
+.maw-masonry .components-panel .components-range-control .components-input-control__input:focus {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+}
+.maw-masonry .components-panel .components-range-control .components-range-control__slider::-webkit-slider-thumb:hover, .maw-masonry .components-panel .components-range-control .components-range-control__slider::-webkit-slider-thumb:focus {
+  background-color: #f59e0b;
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.15);
+}
+.maw-masonry .components-panel .components-range-control .components-range-control__slider::-moz-range-thumb:hover, .maw-masonry .components-panel .components-range-control .components-range-control__slider::-moz-range-thumb:focus {
+  background-color: #f59e0b;
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.15);
+}
+
+.block-editor-block-preview__content .maw-masonry::before {
+  display: none;
+}
+
+/*# sourceMappingURL=editor.css.map*/
