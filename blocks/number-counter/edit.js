@@ -21,7 +21,7 @@ export default function Edit({ attributes, setAttributes }) {
 
     const blockProps = useBlockProps({
         className: blockClass('number-counter', {
-            [`align-${alignment}`]: alignment
+            [`align-${alignment}`]: true
         }),
         'data-block-version': '1.0.0'
     });

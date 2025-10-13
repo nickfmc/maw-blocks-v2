@@ -8,6 +8,19 @@
 @import '../../assets/scss/variables';
 @import '../../assets/scss/mixins';
 
+// Global arrow styles for shared components
+.maw-arrow {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  
+  svg {
+    width: 100%;
+    height: 100%;
+    // Don't override fill/stroke - let the SVG control its own styling
+  }
+}
+
 .maw-testimonial-slider {
   position: relative;
   width: 100%;

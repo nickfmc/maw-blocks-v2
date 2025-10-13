@@ -33,6 +33,10 @@ module.exports = {
         'blocks/masonry/style': './blocks/masonry/style.scss',
         'blocks/masonry/editor': './blocks/masonry/editor.scss',
         'blocks/masonry/frontend': './blocks/masonry/frontend.js',
+        'blocks/icon-list/index': './blocks/icon-list/index.js',
+        'blocks/icon-list/style': './blocks/icon-list/style.scss',
+        'blocks/icon-list/editor': './blocks/icon-list/editor.scss',
+        'blocks/icon-list/frontend': './blocks/icon-list/frontend.js',
         'editor': './assets/scss/editor.scss'
     },
     output: {

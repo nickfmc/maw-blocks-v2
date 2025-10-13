@@ -19,7 +19,7 @@ export default function Save({ attributes }) {
 
     const blockProps = useBlockProps.save({
         className: blockClass('number-counter', {
-            [`align-${alignment}`]: alignment
+            [`align-${alignment}`]: true
         }),
         'data-number': number,
         'data-duration': duration,

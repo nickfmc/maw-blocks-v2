@@ -4,6 +4,7 @@
 
 import { useBlockProps } from '@wordpress/block-editor';
 import { blockClass, elementClass } from '../../src/shared/utils/classnames';
+import { getArrowHTML } from '../../src/shared/components/Arrows';
 
 export default function save({ attributes }) {
     const {
@@ -125,14 +126,20 @@ export default function save({ attributes }) {
                             type="button"
                             aria-label="Previous testimonial"
                         >
-                            <span aria-hidden="true">&lsaquo;</span>
+                            <span 
+                                aria-hidden="true"
+                                dangerouslySetInnerHTML={{ __html: getArrowHTML('left') }}
+                            />
                         </button>
                         <button
                             className={`${elementClass('testimonial-slider', 'arrow')} ${elementClass('testimonial-slider', 'arrow', { next: true })}`}
                             type="button"
                             aria-label="Next testimonial"
                         >
-                            <span aria-hidden="true">&rsaquo;</span>
+                            <span 
+                                aria-hidden="true"
+                                dangerouslySetInnerHTML={{ __html: getArrowHTML('right') }}
+                            />
                         </button>
                     </div>
                 )}

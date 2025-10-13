@@ -12,6 +12,10 @@ if (!defined('ABSPATH')) {
 $maw_blocks = MAW_Blocks::get_instance();
 $available_blocks = $maw_blocks->get_available_blocks();
 $enabled_blocks = get_option('maw_blocks_enabled', array_keys($available_blocks));
+// Ensure $enabled_blocks is always an array
+if (!is_array($enabled_blocks)) {
+    $enabled_blocks = array_keys($available_blocks);
+}
 $global_defaults = get_option('maw_blocks_global_defaults', []);
 $supabase_url = get_option('maw_blocks_supabase_url', '');
 $supabase_key = get_option('maw_blocks_supabase_key', '');
@@ -44,6 +48,9 @@ if (isset($_POST['maw_blocks_export']) && check_admin_referer('maw_blocks_export
         </a>
         <a href="?page=maw-blocks-settings&tab=defaults" class="nav-tab <?php echo $active_tab === 'defaults' ? 'nav-tab-active' : ''; ?>">
             <?php _e('Global Defaults', 'maw-blocks'); ?>
+        </a>
+        <a href="?page=maw-blocks-settings&tab=arrows" class="nav-tab <?php echo $active_tab === 'arrows' ? 'nav-tab-active' : ''; ?>">
+            <?php _e('Arrow Settings', 'maw-blocks'); ?>
         </a>
         <a href="?page=maw-blocks-settings&tab=supabase" class="nav-tab <?php echo $active_tab === 'supabase' ? 'nav-tab-active' : ''; ?>">
             <?php _e('Supabase Sync', 'maw-blocks'); ?>
@@ -130,6 +137,50 @@ if (isset($_POST['maw_blocks_export']) && check_admin_referer('maw_blocks_export
                     <p><?php _e('Supabase is configured. You can now sync your settings.', 'maw-blocks'); ?></p>
                 </div>
             <?php endif; ?>
+
+        <?php elseif ($active_tab === 'arrows') : 
+            $arrow_settings = MAW_Blocks_Settings_Manager::get_arrow_settings(); ?>
+            <h2><?php _e('Global Arrow Settings', 'maw-blocks'); ?></h2>
+            <p><?php _e('Customize the arrow icons used in all slider blocks. These SVG arrows will be used consistently across slider and testimonial-slider blocks.', 'maw-blocks'); ?></p>
+
+            <table class="form-table">
+                <tr>
+                    <th scope="row">
+                        <label for="maw_blocks_left_arrow"><?php _e('Left Arrow SVG', 'maw-blocks'); ?></label>
+                    </th>
+                    <td>
+                        <textarea id="maw_blocks_left_arrow" 
+                                  name="maw_blocks_arrow_settings[left_arrow]" 
+                                  class="large-text code" 
+                                  rows="4"><?php echo esc_textarea($arrow_settings['left_arrow']); ?></textarea>
+                        <p class="description"><?php _e('SVG code for the left/previous arrow. Use "currentColor" for the fill/stroke to inherit theme colors.', 'maw-blocks'); ?></p>
+                        <div class="arrow-preview">
+                            <strong><?php _e('Preview:', 'maw-blocks'); ?></strong>
+                            <span class="arrow-preview-icon" style="display: inline-block; width: 24px; height: 24px; margin-left: 10px;"><?php echo $arrow_settings['left_arrow']; ?></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <label for="maw_blocks_right_arrow"><?php _e('Right Arrow SVG', 'maw-blocks'); ?></label>
+                    </th>
+                    <td>
+                        <textarea id="maw_blocks_right_arrow" 
+                                  name="maw_blocks_arrow_settings[right_arrow]" 
+                                  class="large-text code" 
+                                  rows="4"><?php echo esc_textarea($arrow_settings['right_arrow']); ?></textarea>
+                        <p class="description"><?php _e('SVG code for the right/next arrow. Use "currentColor" for the fill/stroke to inherit theme colors.', 'maw-blocks'); ?></p>
+                        <div class="arrow-preview">
+                            <strong><?php _e('Preview:', 'maw-blocks'); ?></strong>
+                            <span class="arrow-preview-icon" style="display: inline-block; width: 24px; height: 24px; margin-left: 10px;"><?php echo $arrow_settings['right_arrow']; ?></span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="notice notice-info inline">
+                <p><?php _e('<strong>Tips:</strong> Use "currentColor" in your SVG for fill or stroke attributes to automatically inherit text colors from your theme. The arrows will be sized according to your block settings.', 'maw-blocks'); ?></p>
+            </div>
 
         <?php elseif ($active_tab === 'import-export') : ?>
             <h2><?php _e('Import/Export Settings', 'maw-blocks'); ?></h2>

@@ -83,11 +83,6 @@ export default function Edit({ attributes, setAttributes }) {
 				<div className="maw-masonry__grid">
 					<InnerBlocks
 						renderAppender={InnerBlocks.ButtonBlockAppender}
-						template={[
-							['core/image'],
-							['core/paragraph'],
-							['core/image'],
-						]}
 					/>
 				</div>
 			</div>

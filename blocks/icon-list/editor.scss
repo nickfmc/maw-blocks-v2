@@ -1,0 +1,157 @@
+/**
+ * Icon List Block Editor Styles
+ */
+
+@import '../../assets/scss/variables';
+
+.maw-icon-list {
+	position: relative;
+	border: 2px solid #e8ecf1;
+	border-radius: 12px;
+	background: linear-gradient(135deg, #f8f9fb 0%, #ffffff 100%);
+	padding: 24px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+	transition: all 0.3s ease;
+	min-height: 120px;
+	overflow: visible;
+
+	&:hover {
+		border-color: #8b5cf6;
+		box-shadow: 0 4px 16px rgba(139, 92, 246, 0.12);
+	}
+
+	&::before {
+		content: 'Icon List';
+		position: absolute;
+		top: -12px;
+		left: 20px;
+		padding: 4px 12px;
+		background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+		color: white;
+		font-size: 11px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		border-radius: 6px;
+		box-shadow: 0 2px 4px rgba(139, 92, 246, 0.3);
+		z-index: 10;
+	}
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: var(--maw-icon-list-gap, 16px);
+	}
+
+	&__item {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding: 12px;
+		border: 1px dashed #cbd5e1;
+		border-radius: 8px;
+		background: white;
+		transition: all 0.2s ease;
+
+		&:hover {
+			border-color: #8b5cf6;
+			background: #faf9ff;
+		}
+	}
+
+	&__icon-controls {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		margin-bottom: 4px;
+
+		.components-base-control {
+			flex: 1;
+			margin-bottom: 0;
+		}
+
+		.components-button {
+			flex-shrink: 0;
+		}
+	}
+
+	&__content {
+		display: flex;
+		align-items: flex-start;
+		gap: 12px;
+	}
+
+	&__icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 24px;
+		height: 24px;
+		border-radius: 4px;
+		background: var(--maw-icon-list-color, #8b5cf6);
+		color: white;
+		font-size: 14px;
+		font-weight: 600;
+		flex-shrink: 0;
+		margin-top: 2px;
+	}
+
+	&__text {
+		flex: 1;
+		line-height: 1.5;
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	&__add-button {
+		align-self: flex-start;
+		margin-top: 8px;
+		border-style: dashed;
+		border-color: #8b5cf6;
+		color: #8b5cf6;
+
+		&:hover {
+			background: #faf9ff;
+			border-color: #7c3aed;
+			color: #7c3aed;
+		}
+	}
+
+	// Size variations
+	&.maw-icon-list--size-small {
+		.maw-icon-list__icon {
+			width: 18px;
+			height: 18px;
+			font-size: 12px;
+		}
+	}
+
+	&.maw-icon-list--size-large {
+		.maw-icon-list__icon {
+			width: 32px;
+			height: 32px;
+			font-size: 18px;
+		}
+	}
+
+	// Alignment variations
+	&.maw-icon-list--align-center {
+		.maw-icon-list__content {
+			justify-content: center;
+		}
+	}
+
+	&.maw-icon-list--align-right {
+		.maw-icon-list__content {
+			justify-content: flex-end;
+		}
+	}
+}
+
+.block-editor-block-preview__content .maw-icon-list {
+	&::before {
+		display: none;
+	}
+}

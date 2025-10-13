@@ -153,6 +153,14 @@ class MAW_Blocks {
                 'icon' => 'grid-view',
                 'category' => 'maw-blocks',
                 'path' => 'blocks/masonry'
+            ],
+            'icon-list' => [
+                'name' => 'maw-blocks/icon-list',
+                'title' => 'MAW Icon List',
+                'description' => 'Create lists with custom icons for each item',
+                'icon' => 'list-view',
+                'category' => 'maw-blocks',
+                'path' => 'blocks/icon-list'
             ]
         ];
 
@@ -234,6 +242,15 @@ class MAW_Blocks {
     public function enqueue_block_assets() {
         $asset_loader = new MAW_Blocks_Asset_Loader();
         $asset_loader->enqueue_frontend_assets($this->get_enabled_blocks(), $this->available_blocks);
+
+        // Localize global arrow settings for frontend
+        if (!is_admin()) {
+            $arrow_settings = MAW_Blocks_Settings_Manager::get_arrow_settings();
+            wp_add_inline_script('wp-blocks', 'window.mawBlocksArrows = ' . json_encode([
+                'left' => $arrow_settings['left_arrow'],
+                'right' => $arrow_settings['right_arrow']
+            ]) . ';', 'before');
+        }
     }
 
     /**
@@ -246,6 +263,13 @@ class MAW_Blocks {
             [],
             MAW_BLOCKS_VERSION
         );
+
+        // Localize global arrow settings for editor
+        $arrow_settings = MAW_Blocks_Settings_Manager::get_arrow_settings();
+        wp_localize_script('wp-blocks', 'mawBlocksArrows', [
+            'left' => $arrow_settings['left_arrow'],
+            'right' => $arrow_settings['right_arrow']
+        ]);
     }
 
     /**
@@ -269,6 +293,7 @@ class MAW_Blocks {
         register_setting('maw_blocks_settings', 'maw_blocks_global_defaults');
         register_setting('maw_blocks_settings', 'maw_blocks_supabase_url');
         register_setting('maw_blocks_settings', 'maw_blocks_supabase_key');
+        register_setting('maw_blocks_settings', 'maw_blocks_arrow_settings');
     }
 
     /**

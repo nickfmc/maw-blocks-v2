@@ -49,6 +49,26 @@ class MAW_Blocks_Settings_Manager {
     }
 
     /**
+     * Get global arrow settings
+     */
+    public static function get_arrow_settings() {
+        $defaults = [
+            'left_arrow' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>',
+            'right_arrow' => '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'
+        ];
+        
+        $saved_settings = get_option('maw_blocks_arrow_settings', []);
+        return wp_parse_args($saved_settings, $defaults);
+    }
+
+    /**
+     * Update global arrow settings
+     */
+    public static function update_arrow_settings($settings) {
+        return update_option('maw_blocks_arrow_settings', $settings);
+    }
+
+    /**
      * Export settings
      */
     public static function export_settings() {

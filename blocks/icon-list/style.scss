@@ -1,0 +1,115 @@
+/**
+ * Icon List Block Frontend Styles
+ * Minimal functional CSS only
+ */
+
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+
+.maw-icon-list {
+	display: block;
+	width: 100%;
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: var(--maw-icon-list-gap, 16px);
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	&__item {
+		display: flex;
+		align-items: flex-start;
+		gap: var(--maw-spacing-sm, 1rem);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	&__icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 1.5em;
+		height: 1.5em;
+		border-radius: 4px;
+		background: var(--maw-icon-list-color, var(--maw-color-primary, #8b5cf6));
+		color: var(--maw-color-background, #ffffff);
+		font-size: 1rem;
+		font-weight: 600;
+		flex-shrink: 0;
+		line-height: 1;
+	}
+
+	&__text {
+		flex: 1;
+		margin: 0;
+		line-height: 1.5;
+		color: var(--maw-color-text, #333333);
+	}
+
+	// Size variations
+	&--size-small {
+		.maw-icon-list__icon {
+			width: 1.125em;
+			height: 1.125em;
+			font-size: 0.875rem;
+		}
+
+		.maw-icon-list__text {
+			font-size: 0.875rem;
+		}
+	}
+
+	&--size-large {
+		.maw-icon-list__icon {
+			width: 2em;
+			height: 2em;
+			font-size: 1.25rem;
+		}
+
+		.maw-icon-list__text {
+			font-size: 1.125rem;
+		}
+	}
+
+	// Alignment variations
+	&--align-left {
+		text-align: left;
+	}
+
+	&--align-center {
+		text-align: center;
+
+		.maw-icon-list__item {
+			justify-content: center;
+		}
+	}
+
+	&--align-right {
+		text-align: right;
+
+		.maw-icon-list__item {
+			justify-content: flex-end;
+		}
+	}
+
+	// Responsive adjustments
+	@include maw-responsive(mobile) {
+		&__item {
+			gap: var(--maw-spacing-xs, 0.75rem);
+		}
+
+		&__icon {
+			width: 1.25em;
+			height: 1.25em;
+			font-size: 0.875rem;
+		}
+
+		&__text {
+			font-size: 0.875rem;
+		}
+	}
+}

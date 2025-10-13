@@ -1,0 +1,75 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "maw-blocks/icon-list",
+  "version": "1.0.0",
+  "title": "MAW Icon List",
+  "category": "maw-blocks",
+  "icon": "list-view",
+  "description": "Create lists with custom icons for each item",
+  "keywords": ["list", "icon", "bullet", "features", "checklist"],
+  "textdomain": "maw-blocks",
+  "editorScript": "file:../../build/blocks/icon-list/index.js",
+  "editorStyle": "file:../../build/blocks/icon-list/editor.css",
+  "style": "file:../../build/blocks/icon-list/style-index.css",
+  "attributes": {
+    "items": {
+      "type": "array",
+      "default": [
+        {
+          "text": "First list item",
+          "icon": "check",
+          "customSvg": ""
+        },
+        {
+          "text": "Second list item",
+          "icon": "check",
+          "customSvg": ""
+        },
+        {
+          "text": "Third list item",
+          "icon": "check",
+          "customSvg": ""
+        }
+      ]
+    },
+    "iconSize": {
+      "type": "string",
+      "default": "medium"
+    },
+    "iconColor": {
+      "type": "string",
+      "default": ""
+    },
+    "alignment": {
+      "type": "string",
+      "default": "left"
+    },
+    "gap": {
+      "type": "number",
+      "default": 16
+    },
+    "customSvg": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "customClassName": true,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    },
+    "color": {
+      "text": true,
+      "background": true,
+      "link": true
+    }
+  }
+}

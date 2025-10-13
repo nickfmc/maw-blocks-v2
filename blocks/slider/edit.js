@@ -7,6 +7,7 @@ import { useBlockProps, InspectorControls, InnerBlocks } from '@wordpress/block-
 import { PanelBody, SelectControl } from '@wordpress/components';
 import { blockClass } from '../../src/shared/utils/classnames';
 import { NavigationPanel, SliderBehaviorPanel, ResponsivePanel } from '../../src/shared/components/BlockControls';
+import { NavigationArrows } from '../../src/shared/components/Arrows';
 
 const ALLOWED_BLOCKS = ['core/group', 'core/image', 'core/paragraph', 'core/heading', 'core/columns'];
 
@@ -108,16 +109,7 @@ export default function Edit({ attributes, setAttributes }) {
                         renderAppender={InnerBlocks.ButtonBlockAppender}
                     />
                 </div>
-                {showArrows && (
-                    <div className="maw-slider__navigation">
-                        <button className="maw-slider__arrow maw-slider__arrow--prev" type="button">
-                            {__('Previous', 'maw-blocks')}
-                        </button>
-                        <button className="maw-slider__arrow maw-slider__arrow--next" type="button">
-                            {__('Next', 'maw-blocks')}
-                        </button>
-                    </div>
-                )}
+                <NavigationArrows showArrows={showArrows} />
                 {showDots && (
                     <div className={`maw-slider__dots maw-slider__dots--${dotsPosition}`}>
                         <span className="maw-slider__dot maw-slider__dot--active"></span>
