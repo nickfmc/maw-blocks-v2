@@ -37,6 +37,23 @@ export default function Edit({ attributes, setAttributes }) {
         setAttributes({ logos: newLogos });
     };
 
+    const moveLogo = (fromIndex, toIndex) => {
+        if (toIndex < 0 || toIndex >= logos.length) return;
+        
+        const newLogos = [...logos];
+        const [movedLogo] = newLogos.splice(fromIndex, 1);
+        newLogos.splice(toIndex, 0, movedLogo);
+        setAttributes({ logos: newLogos });
+    };
+
+    const moveLogoUp = (index) => {
+        moveLogo(index, index - 1);
+    };
+
+    const moveLogoDown = (index) => {
+        moveLogo(index, index + 1);
+    };
+
     const updateLogoAlt = (index, alt) => {
         const newLogos = [...logos];
         newLogos[index] = { ...newLogos[index], alt };
@@ -147,14 +164,36 @@ export default function Edit({ attributes, setAttributes }) {
                                                 alt={logo.alt}
                                                 style={{ height: `${logoHeight}px` }}
                                             />
-                                            <Button
-                                                isDestructive
-                                                isSmall
-                                                onClick={() => removeLogo(index)}
-                                                className={elementClass('logo-carousel', 'remove-btn')}
-                                            >
-                                                {__('Remove', 'maw-blocks')}
-                                            </Button>
+                                            <div className={elementClass('logo-carousel', 'item-controls')}>
+                                                <div className={elementClass('logo-carousel', 'reorder-controls')}>
+                                                    <Button
+                                                        isSmall
+                                                        variant="secondary"
+                                                        onClick={() => moveLogoUp(index)}
+                                                        disabled={index === 0}
+                                                        className={elementClass('logo-carousel', 'move-btn')}
+                                                        icon="arrow-up-alt2"
+                                                        label={__('Move Up', 'maw-blocks')}
+                                                    />
+                                                    <Button
+                                                        isSmall
+                                                        variant="secondary"
+                                                        onClick={() => moveLogoDown(index)}
+                                                        disabled={index === logos.length - 1}
+                                                        className={elementClass('logo-carousel', 'move-btn')}
+                                                        icon="arrow-down-alt2"
+                                                        label={__('Move Down', 'maw-blocks')}
+                                                    />
+                                                </div>
+                                                <Button
+                                                    isDestructive
+                                                    isSmall
+                                                    onClick={() => removeLogo(index)}
+                                                    className={elementClass('logo-carousel', 'remove-btn')}
+                                                >
+                                                    {__('Remove', 'maw-blocks')}
+                                                </Button>
+                                            </div>
                                         </div>
                                     ))}
                                 </div>

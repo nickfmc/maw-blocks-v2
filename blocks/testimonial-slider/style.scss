@@ -125,11 +125,27 @@
     &:disabled {
       opacity: 0.3;
       cursor: not-allowed;
+      border-color: currentColor;
+      
+      &:hover {
+        opacity: 0.3;
+        transform: none;
+      }
     }
 
     span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 1.5rem;
       line-height: 1;
+    }
+
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      stroke: currentColor;
+      fill: none;
     }
   }
 
@@ -159,6 +175,19 @@
       top: 50%;
       transform: translateY(-50%);
       margin-top: 0;
+    }
+
+    // Dot alignment modifiers
+    &--align-left {
+      justify-content: flex-start;
+    }
+
+    &--align-center {
+      justify-content: center;
+    }
+
+    &--align-right {
+      justify-content: flex-end;
     }
   }
 
@@ -190,6 +219,19 @@
   &.maw-testimonial-slider--align-right &__content {
     align-items: flex-end;
     text-align: right;
+  }
+
+  // Arrow positioning modifiers
+  &.maw-testimonial-slider--arrows-below &__navigation {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: var(--maw-spacing-md);
+    margin-top: var(--maw-spacing-md);
+  }
+
+  &.maw-testimonial-slider--arrows-below &__arrow {
+    position: relative;
   }
 
   @include maw-responsive(mobile) {

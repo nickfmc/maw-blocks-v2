@@ -27,9 +27,12 @@ export default function Edit({ attributes, setAttributes }) {
         arrowIcon,
         showDots,
         dotsPosition,
+        dotsAlignment,
+        arrowPosition,
         autoplay,
         autoplaySpeed,
         loop,
+        endBehavior,
         speed
     } = attributes;
 
@@ -76,14 +79,17 @@ export default function Edit({ attributes, setAttributes }) {
     const navigationSettings = {
         showArrows,
         arrowIcon,
+        arrowPosition,
         showDots,
-        dotsPosition
+        dotsPosition,
+        dotsAlignment
     };
 
     const behaviorSettings = {
         autoplay,
         autoplaySpeed,
         loop,
+        endBehavior,
         speed,
         slidesPerView: 1,
         spaceBetween: 20

@@ -12,9 +12,12 @@ export default function save({ attributes }) {
         arrowIcon,
         showDots,
         dotsPosition,
+        dotsAlignment,
+        arrowPosition,
         autoplay,
         autoplaySpeed,
         loop,
+        endBehavior,
         speed,
         slidesPerView,
         slidesPerViewTablet,
@@ -28,11 +31,14 @@ export default function save({ attributes }) {
             'arrows-visible': showArrows,
             'dots-visible': showDots,
             [`dots-${dotsPosition}`]: showDots && dotsPosition,
+            [`dots-align-${dotsAlignment}`]: showDots && dotsAlignment,
+            [`arrows-${arrowPosition}`]: showArrows && arrowPosition,
             [`effect-${effect}`]: effect
         }),
         'data-autoplay': autoplay,
         'data-autoplay-speed': autoplaySpeed,
         'data-loop': loop,
+        'data-end-behavior': endBehavior,
         'data-speed': speed,
         'data-slides-per-view': slidesPerView,
         'data-slides-per-view-tablet': slidesPerViewTablet,
@@ -73,7 +79,7 @@ export default function save({ attributes }) {
                     </div>
                 )}
                 {showDots && (
-                    <div className={`${elementClass('slider', 'dots')} ${elementClass('slider', 'dots', { [dotsPosition]: true })}`}>
+                    <div className={`${elementClass('slider', 'dots')} ${elementClass('slider', 'dots', { [dotsPosition]: true, [`align-${dotsAlignment}`]: true })}`}>
                     </div>
                 )}
             </div>

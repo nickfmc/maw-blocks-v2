@@ -14,7 +14,13 @@ export default function Save({ attributes }) {
         label,
         alignment,
         animateOnce,
-        startDelay
+        startDelay,
+        numberFontSize,
+        prefixFontSize,
+        suffixFontSize,
+        numberColor,
+        prefixColor,
+        suffixColor
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -32,18 +38,34 @@ export default function Save({ attributes }) {
             <div className={elementClass('number-counter', 'wrapper')}>
                 <div className={elementClass('number-counter', 'display')}>
                     {prefix && (
-                        <span className={elementClass('number-counter', 'prefix')}>
+                        <span 
+                            className={elementClass('number-counter', 'prefix')}
+                            style={{
+                                fontSize: prefixFontSize,
+                                color: prefixColor
+                            }}
+                        >
                             {prefix}
                         </span>
                     )}
                     <span
                         className={elementClass('number-counter', 'number')}
+                        style={{
+                            fontSize: numberFontSize,
+                            color: numberColor
+                        }}
                         data-target={number}
                     >
                         0
                     </span>
                     {suffix && (
-                        <span className={elementClass('number-counter', 'suffix')}>
+                        <span 
+                            className={elementClass('number-counter', 'suffix')}
+                            style={{
+                                fontSize: suffixFontSize,
+                                color: suffixColor
+                            }}
+                        >
                             {suffix}
                         </span>
                     )}

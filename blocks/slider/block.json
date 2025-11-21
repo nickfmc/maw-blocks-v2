@@ -30,6 +30,14 @@
       "type": "string",
       "default": "below"
     },
+    "dotsAlignment": {
+      "type": "string",
+      "default": "center"
+    },
+    "arrowPosition": {
+      "type": "string",
+      "default": "sides"
+    },
     "autoplay": {
       "type": "boolean",
       "default": false
@@ -41,6 +49,10 @@
     "loop": {
       "type": "boolean",
       "default": true
+    },
+    "endBehavior": {
+      "type": "string",
+      "default": "loop"
     },
     "speed": {
       "type": "number",

@@ -3,8 +3,9 @@
  */
 
 import { __ } from '@wordpress/i18n';
-import { useBlockProps, InspectorControls, RichText } from '@wordpress/block-editor';
-import { PanelBody, TextControl, RangeControl, ToggleControl, SelectControl } from '@wordpress/components';
+import { useBlockProps, InspectorControls, RichText, PanelColorSettings } from '@wordpress/block-editor';
+import { PanelBody, TextControl, RangeControl, ToggleControl, SelectControl, FontSizePicker } from '@wordpress/components';
+import { useSetting } from '@wordpress/block-editor';
 import { blockClass, elementClass } from '../../src/shared/utils/classnames';
 
 export default function Edit({ attributes, setAttributes }) {
@@ -16,8 +17,23 @@ export default function Edit({ attributes, setAttributes }) {
         label,
         alignment,
         animateOnce,
-        startDelay
+        startDelay,
+        numberFontSize,
+        prefixFontSize,
+        suffixFontSize,
+        numberColor,
+        prefixColor,
+        suffixColor
     } = attributes;
+
+    // Get theme colors and font sizes
+    const themeColors = useSetting('color.palette') || [];
+    const themeFontSizes = useSetting('typography.fontSizes') || [
+        { name: __('Small', 'maw-blocks'), slug: 'small', size: '14px' },
+        { name: __('Medium', 'maw-blocks'), slug: 'medium', size: '18px' },
+        { name: __('Large', 'maw-blocks'), slug: 'large', size: '24px' },
+        { name: __('Extra Large', 'maw-blocks'), slug: 'x-large', size: '48px' }
+    ];
 
     const blockProps = useBlockProps({
         className: blockClass('number-counter', {
@@ -90,21 +106,86 @@ export default function Edit({ attributes, setAttributes }) {
                         onChange={(value) => setAttributes({ alignment: value })}
                     />
                 </PanelBody>
+
+                <PanelBody title={__('Typography', 'maw-blocks')} initialOpen={false}>
+                    <FontSizePicker
+                        label={__('Number Font Size', 'maw-blocks')}
+                        value={numberFontSize}
+                        onChange={(value) => setAttributes({ numberFontSize: value || '48px' })}
+                        fontSizes={themeFontSizes}
+                        withSlider
+                    />
+                    <FontSizePicker
+                        label={__('Prefix Font Size', 'maw-blocks')}
+                        value={prefixFontSize}
+                        onChange={(value) => setAttributes({ prefixFontSize: value || '24px' })}
+                        fontSizes={themeFontSizes}
+                        withSlider
+                    />
+                    <FontSizePicker
+                        label={__('Suffix Font Size', 'maw-blocks')}
+                        value={suffixFontSize}
+                        onChange={(value) => setAttributes({ suffixFontSize: value || '24px' })}
+                        fontSizes={themeFontSizes}
+                        withSlider
+                    />
+                </PanelBody>
+
+                <PanelColorSettings
+                    title={__('Colors', 'maw-blocks')}
+                    initialOpen={false}
+                    colorSettings={[
+                        {
+                            value: numberColor,
+                            onChange: (value) => setAttributes({ numberColor: value }),
+                            label: __('Number Color', 'maw-blocks'),
+                        },
+                        {
+                            value: prefixColor,
+                            onChange: (value) => setAttributes({ prefixColor: value }),
+                            label: __('Prefix Color', 'maw-blocks'),
+                        },
+                        {
+                            value: suffixColor,
+                            onChange: (value) => setAttributes({ suffixColor: value }),
+                            label: __('Suffix Color', 'maw-blocks'),
+                        },
+                    ]}
+                    colors={themeColors}
+                />
             </InspectorControls>
 
             <div {...blockProps}>
                 <div className={elementClass('number-counter', 'wrapper')}>
                     <div className={elementClass('number-counter', 'display')}>
                         {prefix && (
-                            <span className={elementClass('number-counter', 'prefix')}>
+                            <span 
+                                className={elementClass('number-counter', 'prefix')}
+                                style={{
+                                    fontSize: prefixFontSize,
+                                    color: prefixColor
+                                }}
+                            >
                                 {prefix}
                             </span>
                         )}
-                        <span className={elementClass('number-counter', 'number')}>
+                        <span 
+                            className={elementClass('number-counter', 'number')}
+                            style={{
+                                fontSize: numberFontSize,
+                                color: numberColor
+                            }}
+                        >
                             {number}
                         </span>
                         {suffix && (
-                            <span className={elementClass('number-counter', 'suffix')}>
+                            <span 
+                                className={elementClass('number-counter', 'suffix')}
+                                style={{
+                                    fontSize: suffixFontSize,
+                                    color: suffixColor
+                                }}
+                            >
                                 {suffix}
                             </span>
                         )}

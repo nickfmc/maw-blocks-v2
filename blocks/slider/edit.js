@@ -32,9 +32,12 @@ export default function Edit({ attributes, setAttributes }) {
         arrowIcon,
         showDots,
         dotsPosition,
+        dotsAlignment,
+        arrowPosition,
         autoplay,
         autoplaySpeed,
         loop,
+        endBehavior,
         speed,
         slidesPerView,
         slidesPerViewTablet,
@@ -47,7 +50,9 @@ export default function Edit({ attributes, setAttributes }) {
         className: blockClass('slider', {
             'arrows-visible': showArrows,
             'dots-visible': showDots,
-            [`dots-${dotsPosition}`]: showDots && dotsPosition
+            [`dots-${dotsPosition}`]: showDots && dotsPosition,
+            [`dots-align-${dotsAlignment}`]: showDots && dotsAlignment,
+            [`arrows-${arrowPosition}`]: showArrows && arrowPosition
         }),
         'data-block-version': '1.0.0'
     });
@@ -55,14 +60,17 @@ export default function Edit({ attributes, setAttributes }) {
     const navigationSettings = {
         showArrows,
         arrowIcon,
+        arrowPosition,
         showDots,
-        dotsPosition
+        dotsPosition,
+        dotsAlignment
     };
 
     const behaviorSettings = {
         autoplay,
         autoplaySpeed,
         loop,
+        endBehavior,
         speed,
         slidesPerView,
         spaceBetween

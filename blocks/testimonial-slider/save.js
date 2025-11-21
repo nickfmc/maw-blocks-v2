@@ -17,9 +17,12 @@ export default function save({ attributes }) {
         arrowIcon,
         showDots,
         dotsPosition,
+        dotsAlignment,
+        arrowPosition,
         autoplay,
         autoplaySpeed,
         loop,
+        endBehavior,
         speed
     } = attributes;
 
@@ -31,11 +34,15 @@ export default function save({ attributes }) {
         className: blockClass('testimonial-slider', {
             [`align-${alignment}`]: alignment,
             'arrows-visible': showArrows,
-            'dots-visible': showDots
+            'dots-visible': showDots,
+            [`dots-${dotsPosition}`]: showDots && dotsPosition,
+            [`dots-align-${dotsAlignment}`]: showDots && dotsAlignment,
+            [`arrows-${arrowPosition}`]: showArrows && arrowPosition
         }),
         'data-autoplay': autoplay,
         'data-autoplay-speed': autoplaySpeed,
         'data-loop': loop,
+        'data-end-behavior': endBehavior,
         'data-speed': speed,
         'data-arrow-icon': arrowIcon
     });
@@ -145,7 +152,7 @@ export default function save({ attributes }) {
                 )}
 
                 {showDots && (
-                    <div className={`${elementClass('testimonial-slider', 'dots')} ${elementClass('testimonial-slider', 'dots', { [dotsPosition]: true })}`}>
+                    <div className={`${elementClass('testimonial-slider', 'dots')} ${elementClass('testimonial-slider', 'dots', { [dotsPosition]: true, [`align-${dotsAlignment}`]: true })}`}>
                     </div>
                 )}
             </div>

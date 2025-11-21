@@ -37,6 +37,7 @@ class SliderInstance {
             autoplay: element.getAttribute('data-autoplay') === 'true',
             autoplaySpeed: parseInt(element.getAttribute('data-autoplay-speed')) || 3000,
             loop: element.getAttribute('data-loop') === 'true',
+            endBehavior: element.getAttribute('data-end-behavior') || 'loop',
             speed: parseInt(element.getAttribute('data-speed')) || 500,
             slidesPerView: parseInt(element.getAttribute('data-slides-per-view')) || 1,
             slidesPerViewTablet: parseInt(element.getAttribute('data-slides-per-view-tablet')) || 1,
@@ -141,13 +142,17 @@ class SliderInstance {
         const prevButton = this.element.querySelector('.maw-slider__arrow--prev, .maw-testimonial-slider__arrow--prev');
         const nextButton = this.element.querySelector('.maw-slider__arrow--next, .maw-testimonial-slider__arrow--next');
 
-        if (!this.config.loop) {
-            if (prevButton) {
-                prevButton.disabled = this.currentIndex === 0;
-            }
+        if (prevButton && nextButton) {
+            const maxIndex = this.slides.length - this.config.slidesPerView;
 
-            if (nextButton) {
-                nextButton.disabled = this.currentIndex >= this.slides.length - this.config.slidesPerView;
+            if (this.config.endBehavior === 'disable') {
+                // Disable arrows at ends when endBehavior is 'disable'
+                prevButton.disabled = this.currentIndex === 0;
+                nextButton.disabled = this.currentIndex >= maxIndex;
+            } else {
+                // Enable all arrows when looping
+                prevButton.disabled = false;
+                nextButton.disabled = false;
             }
         }
     }
@@ -159,9 +164,10 @@ class SliderInstance {
 
         if (this.currentIndex < maxIndex) {
             this.goTo(this.currentIndex + 1);
-        } else if (this.config.loop) {
+        } else if (this.config.endBehavior === 'loop' && this.config.loop) {
             this.goTo(0);
         }
+        // If endBehavior is 'disable', do nothing when at the end
     }
 
     prev() {
@@ -169,9 +175,10 @@ class SliderInstance {
 
         if (this.currentIndex > 0) {
             this.goTo(this.currentIndex - 1);
-        } else if (this.config.loop) {
+        } else if (this.config.endBehavior === 'loop' && this.config.loop) {
             this.goTo(this.slides.length - this.config.slidesPerView);
         }
+        // If endBehavior is 'disable', do nothing when at the beginning
     }
 
     goTo(index) {
