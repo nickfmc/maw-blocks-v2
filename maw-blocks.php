@@ -227,6 +227,19 @@ class MAW_Blocks {
                     true
                 );
 
+                // Localize Google Maps settings for the google-map block
+                if ($block_id === 'google-map') {
+                    $google_maps_config = MAW_Blocks_Settings_Manager::get_google_maps_config();
+                    wp_localize_script(
+                        $script_handle,
+                        'mawGoogleMapsSettings',
+                        [
+                            'apiKey' => $google_maps_config['api_key'],
+                            'defaultStyles' => $google_maps_config['snazzy_styles']
+                        ]
+                    );
+                }
+
                 error_log('MAW Blocks: Registering script ' . $script_handle . ' - ' . ($registered ? 'SUCCESS' : 'FAILED'));
                 error_log('MAW Blocks: Script URL: ' . trailingslashit(MAW_BLOCKS_PLUGIN_URL) . 'build/blocks/' . $block_id . '/frontend.js');
             }
@@ -257,16 +270,10 @@ class MAW_Blocks {
         // Localize global arrow settings for frontend
         if (!is_admin()) {
             $arrow_settings = MAW_Blocks_Settings_Manager::get_arrow_settings();
-            $google_maps_config = MAW_Blocks_Settings_Manager::get_google_maps_config();
             
             wp_add_inline_script('wp-blocks', 'window.mawBlocksArrows = ' . json_encode([
                 'left' => $arrow_settings['left_arrow'],
                 'right' => $arrow_settings['right_arrow']
-            ]) . ';', 'before');
-
-            wp_add_inline_script('wp-blocks', 'window.mawGoogleMapsSettings = ' . json_encode([
-                'apiKey' => $google_maps_config['api_key'],
-                'defaultStyles' => $google_maps_config['snazzy_styles']
             ]) . ';', 'before');
         }
     }
