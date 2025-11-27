@@ -67,6 +67,7 @@ class MAW_Blocks {
      */
     private function init_hooks() {
         add_filter('block_categories_all', [$this, 'register_block_category'], 10, 1);
+        add_filter('block_categories', [$this, 'register_block_category'], 10, 1); // Fallback for older WP versions
         add_action('init', [$this, 'register_blocks']);
         add_action('enqueue_block_assets', [$this, 'enqueue_block_assets']);
         add_action('enqueue_block_editor_assets', [$this, 'enqueue_editor_assets']);
@@ -82,14 +83,14 @@ class MAW_Blocks {
         require_once MAW_BLOCKS_PLUGIN_DIR . 'includes/class-block-registry.php';
         require_once MAW_BLOCKS_PLUGIN_DIR . 'includes/class-settings-manager.php';
         require_once MAW_BLOCKS_PLUGIN_DIR . 'includes/class-asset-loader.php';
-        require_once MAW_BLOCKS_PLUGIN_DIR . 'includes/class-supabase-sync.php';
     }
 
     /**
      * Register block category
      */
     public function register_block_category($categories) {
-        return array_merge(
+        error_log('MAW Blocks: Registering block category');
+        $new_categories = array_merge(
             $categories,
             [
                 [
@@ -99,6 +100,8 @@ class MAW_Blocks {
                 ],
             ]
         );
+        error_log('MAW Blocks: Added category - Total categories: ' . count($new_categories));
+        return $new_categories;
     }
 
     /**
@@ -161,6 +164,14 @@ class MAW_Blocks {
                 'icon' => 'list-view',
                 'category' => 'maw-blocks',
                 'path' => 'blocks/icon-list'
+            ],
+            'google-map' => [
+                'name' => 'maw-blocks/google-map',
+                'title' => 'MAW Google Map',
+                'description' => 'Embed Google Maps with custom styling and configuration',
+                'icon' => 'location-alt',
+                'category' => 'maw-blocks',
+                'path' => 'blocks/google-map'
             ]
         ];
 
@@ -246,9 +257,16 @@ class MAW_Blocks {
         // Localize global arrow settings for frontend
         if (!is_admin()) {
             $arrow_settings = MAW_Blocks_Settings_Manager::get_arrow_settings();
+            $google_maps_config = MAW_Blocks_Settings_Manager::get_google_maps_config();
+            
             wp_add_inline_script('wp-blocks', 'window.mawBlocksArrows = ' . json_encode([
                 'left' => $arrow_settings['left_arrow'],
                 'right' => $arrow_settings['right_arrow']
+            ]) . ';', 'before');
+
+            wp_add_inline_script('wp-blocks', 'window.mawGoogleMapsSettings = ' . json_encode([
+                'apiKey' => $google_maps_config['api_key'],
+                'defaultStyles' => $google_maps_config['snazzy_styles']
             ]) . ';', 'before');
         }
     }
@@ -270,6 +288,13 @@ class MAW_Blocks {
             'left' => $arrow_settings['left_arrow'],
             'right' => $arrow_settings['right_arrow']
         ]);
+
+        // Localize Google Maps configuration for editor
+        $google_maps_config = MAW_Blocks_Settings_Manager::get_google_maps_config();
+        wp_localize_script('wp-blocks', 'mawGoogleMapsSettings', [
+            'apiKey' => $google_maps_config['api_key'],
+            'defaultStyles' => $google_maps_config['snazzy_styles']
+        ]);
     }
 
     /**
@@ -289,11 +314,37 @@ class MAW_Blocks {
      * Register plugin settings
      */
     public function register_settings() {
-        register_setting('maw_blocks_settings', 'maw_blocks_enabled');
+        register_setting('maw_blocks_settings', 'maw_blocks_enabled', [
+            'sanitize_callback' => [$this, 'sanitize_enabled_blocks']
+        ]);
         register_setting('maw_blocks_settings', 'maw_blocks_global_defaults');
-        register_setting('maw_blocks_settings', 'maw_blocks_supabase_url');
-        register_setting('maw_blocks_settings', 'maw_blocks_supabase_key');
         register_setting('maw_blocks_settings', 'maw_blocks_arrow_settings');
+        register_setting('maw_blocks_settings', 'maw_blocks_google_maps_api_key');
+        register_setting('maw_blocks_settings', 'maw_blocks_google_maps_snazzy_styles');
+    }
+
+    /**
+     * Sanitize enabled blocks array
+     */
+    public function sanitize_enabled_blocks($input) {
+        // Check which tab this submission came from
+        $current_tab = isset($_POST['maw_blocks_current_tab']) ? sanitize_text_field($_POST['maw_blocks_current_tab']) : 'blocks';
+        
+        // If input is empty and we're not on the blocks tab, preserve current settings
+        if (empty($input) && $current_tab !== 'blocks') {
+            $current_enabled = get_option('maw_blocks_enabled', array_keys($this->available_blocks));
+            return is_array($current_enabled) ? $current_enabled : array_keys($this->available_blocks);
+        }
+        
+        // If we're on the blocks tab or have input, process normally
+        if (!is_array($input)) {
+            $input = [];
+        }
+        
+        // Only allow valid block IDs
+        $valid_blocks = array_keys($this->available_blocks);
+        $sanitized = array_intersect($input, $valid_blocks);
+        return $sanitized;
     }
 
     /**

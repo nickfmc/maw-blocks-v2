@@ -5,6 +5,7 @@
 
 const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     ...defaultConfig,
@@ -37,11 +38,30 @@ module.exports = {
         'blocks/icon-list/style': './blocks/icon-list/style.scss',
         'blocks/icon-list/editor': './blocks/icon-list/editor.scss',
         'blocks/icon-list/frontend': './blocks/icon-list/frontend.js',
+        'blocks/google-map/index': './blocks/google-map/index.js',
+        'blocks/google-map/style': './blocks/google-map/style.scss',
+        'blocks/google-map/editor': './blocks/google-map/editor.scss',
+        'blocks/google-map/frontend': './blocks/google-map/frontend.js',
         'editor': './assets/scss/editor.scss'
     },
     output: {
         path: path.resolve(__dirname, 'build'),
         filename: '[name].js'
-    }
+    },
+    plugins: [
+        ...defaultConfig.plugins,
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: 'blocks/video/block.json', to: 'blocks/video/block.json' },
+                { from: 'blocks/slider/block.json', to: 'blocks/slider/block.json' },
+                { from: 'blocks/testimonial-slider/block.json', to: 'blocks/testimonial-slider/block.json' },
+                { from: 'blocks/logo-carousel/block.json', to: 'blocks/logo-carousel/block.json' },
+                { from: 'blocks/number-counter/block.json', to: 'blocks/number-counter/block.json' },
+                { from: 'blocks/masonry/block.json', to: 'blocks/masonry/block.json' },
+                { from: 'blocks/icon-list/block.json', to: 'blocks/icon-list/block.json' },
+                { from: 'blocks/google-map/block.json', to: 'blocks/google-map/block.json' }
+            ]
+        })
+    ]
 };
 

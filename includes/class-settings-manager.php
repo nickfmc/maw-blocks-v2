@@ -31,24 +31,6 @@ class MAW_Blocks_Settings_Manager {
     }
 
     /**
-     * Get Supabase configuration
-     */
-    public static function get_supabase_config() {
-        return [
-            'url' => get_option('maw_blocks_supabase_url', ''),
-            'key' => get_option('maw_blocks_supabase_key', '')
-        ];
-    }
-
-    /**
-     * Check if Supabase is configured
-     */
-    public static function is_supabase_configured() {
-        $config = self::get_supabase_config();
-        return !empty($config['url']) && !empty($config['key']);
-    }
-
-    /**
      * Get global arrow settings
      */
     public static function get_arrow_settings() {
@@ -69,33 +51,29 @@ class MAW_Blocks_Settings_Manager {
     }
 
     /**
-     * Export settings
+     * Get Google Maps configuration
      */
-    public static function export_settings() {
+    public static function get_google_maps_config() {
         return [
-            'enabled_blocks' => get_option('maw_blocks_enabled', []),
-            'global_defaults' => get_option('maw_blocks_global_defaults', []),
-            'version' => MAW_BLOCKS_VERSION,
-            'exported_at' => current_time('mysql')
+            'api_key' => get_option('maw_blocks_google_maps_api_key', ''),
+            'snazzy_styles' => get_option('maw_blocks_google_maps_snazzy_styles', '')
         ];
     }
 
     /**
-     * Import settings
+     * Check if Google Maps is configured
      */
-    public static function import_settings($settings) {
-        if (!is_array($settings)) {
-            return false;
-        }
+    public static function is_google_maps_configured() {
+        $config = self::get_google_maps_config();
+        return !empty($config['api_key']);
+    }
 
-        if (isset($settings['enabled_blocks'])) {
-            update_option('maw_blocks_enabled', $settings['enabled_blocks']);
-        }
-
-        if (isset($settings['global_defaults'])) {
-            update_option('maw_blocks_global_defaults', $settings['global_defaults']);
-        }
-
+    /**
+     * Update Google Maps configuration
+     */
+    public static function update_google_maps_config($config) {
+        update_option('maw_blocks_google_maps_api_key', sanitize_text_field($config['api_key']));
+        update_option('maw_blocks_google_maps_snazzy_styles', wp_kses_post($config['snazzy_styles']));
         return true;
     }
 }

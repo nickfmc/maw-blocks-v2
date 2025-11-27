@@ -11,7 +11,7 @@
   "textdomain": "maw-blocks",
   "editorScript": "file:../../build/blocks/logo-carousel/index.js",
   "editorStyle": "file:../../build/blocks/logo-carousel/editor.css",
-  "style": "file:../../build/blocks/logo-carousel/style-index.css",
+  "style": "file:../../build/blocks/logo-carousel/style-style.css",
   "viewScript": "maw-blocks-logo-carousel-view",
   "attributes": {
     "logos": {

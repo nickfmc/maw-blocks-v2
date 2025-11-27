@@ -1,0 +1,87 @@
+{
+  "name": "maw-blocks/google-map",
+  "title": "MAW Google Map",
+  "description": "Embed Google Maps with custom styling and configuration",
+  "category": "maw-blocks",
+  "icon": "location-alt",
+  "keywords": ["map", "location", "google", "embed"],
+  "version": "1.0.0",
+  "textdomain": "maw-blocks",
+  "apiVersion": 3,
+  "editorScript": "file:../../build/blocks/google-map/index.js",
+  "editorStyle": "file:../../build/blocks/google-map/editor.css",
+  "style": "file:../../build/blocks/google-map/style-style.css",
+  "viewScript": "maw-blocks-google-map-view",
+  "attributes": {
+    "latitude": {
+      "type": "number",
+      "default": 40.7589
+    },
+    "longitude": {
+      "type": "number",
+      "default": -73.9851
+    },
+    "zoom": {
+      "type": "number",
+      "default": 13
+    },
+    "height": {
+      "type": "number",
+      "default": 400
+    },
+    "address": {
+      "type": "string",
+      "default": ""
+    },
+    "mapType": {
+      "type": "string",
+      "default": "roadmap",
+      "enum": ["roadmap", "satellite", "hybrid", "terrain"]
+    },
+    "showMarker": {
+      "type": "boolean",
+      "default": true
+    },
+    "markerTitle": {
+      "type": "string",
+      "default": ""
+    },
+    "customStyles": {
+      "type": "string",
+      "default": ""
+    },
+    "disableUI": {
+      "type": "boolean",
+      "default": false
+    },
+    "disableDefaultUI": {
+      "type": "boolean",
+      "default": false
+    },
+    "zoomControl": {
+      "type": "boolean",
+      "default": true
+    },
+    "streetViewControl": {
+      "type": "boolean",
+      "default": true
+    },
+    "mapTypeControl": {
+      "type": "boolean",
+      "default": true
+    },
+    "fullscreenControl": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "customClassName": true,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  }
+}

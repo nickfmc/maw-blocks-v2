@@ -278,6 +278,10 @@ Every block MUST have:
 
 ### 3. block.json Structure
 
+**CRITICAL: Asset Paths**
+
+All blocks MUST use the following exact asset path pattern to point to the compiled files in the build directory:
+
 ```json
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
@@ -285,14 +289,15 @@ Every block MUST have:
   "name": "maw-blocks/{block-name}",
   "version": "1.0.0",
   "title": "MAW {Block Title}",
-  "category": "common|layout|media|widgets",
+  "category": "maw-blocks",
   "icon": "wordpress-icon-name",
   "description": "Clear description of block purpose",
   "keywords": ["relevant", "keywords"],
   "textdomain": "maw-blocks",
-  "editorScript": "file:./index.js",
-  "editorStyle": "file:./editor.css",
-  "style": "file:./style.css",
+  "editorScript": "file:../../build/blocks/{block-name}/index.js",
+  "editorStyle": "file:../../build/blocks/{block-name}/editor.css",
+  "style": "file:../../build/blocks/{block-name}/style-style.css",
+  "viewScript": "maw-blocks-{block-name}-view",
   "attributes": {
     "exampleAttribute": {
       "type": "string|boolean|number|array|object",
@@ -308,6 +313,27 @@ Every block MUST have:
       "padding": true
     }
   }
+}
+```
+
+**⚠️ IMPORTANT NOTES:**
+
+1. **Asset paths MUST point to `../../build/blocks/{block-name}/`** - This ensures WordPress loads the compiled, production-ready files
+2. **Category MUST be `maw-blocks`** - All blocks use the custom MAW Blocks category
+3. **Style file is named `style-style.css`** - Due to webpack compilation naming
+4. **viewScript uses handle format** - `maw-blocks-{block-name}-view` (registered separately in PHP)
+5. **Never use relative paths like `file:./index.js`** - This will load uncompiled source files and cause errors
+
+**Example for a new "accordion" block:**
+```json
+{
+  "name": "maw-blocks/accordion",
+  "title": "MAW Accordion",
+  "category": "maw-blocks",
+  "editorScript": "file:../../build/blocks/accordion/index.js",
+  "editorStyle": "file:../../build/blocks/accordion/editor.css",
+  "style": "file:../../build/blocks/accordion/style-style.css",
+  "viewScript": "maw-blocks-accordion-view"
 }
 ```
 
@@ -525,12 +551,54 @@ private function register_available_blocks() {
             'title' => 'MAW New Block',
             'description' => 'Description of the block',
             'icon' => 'wordpress-icon',
-            'category' => 'common',
+            'category' => 'maw-blocks',
             'path' => 'blocks/new-block'
         ]
     ];
 }
 ```
+
+### 11. Add Block to Webpack Config
+
+Add the new block entries to `webpack.config.js`:
+
+```javascript
+module.exports = {
+    ...defaultConfig,
+    entry: {
+        // ... existing blocks ...
+        'blocks/new-block/index': './blocks/new-block/index.js',
+        'blocks/new-block/style': './blocks/new-block/style.scss',
+        'blocks/new-block/editor': './blocks/new-block/editor.scss',
+        'blocks/new-block/frontend': './blocks/new-block/frontend.js',
+        // ...
+    },
+    plugins: [
+        ...defaultConfig.plugins,
+        new CopyWebpackPlugin({
+            patterns: [
+                // ... existing blocks ...
+                { from: 'blocks/new-block/block.json', to: 'blocks/new-block/block.json' },
+                // ...
+            ]
+        })
+    ]
+};
+```
+
+**⚠️ CRITICAL:** The CopyWebpackPlugin is required to copy block.json files to the build directory. Without this, blocks will fail to register.
+
+### 12. Build Process
+
+After adding a new block:
+
+1. **Add block files** in `blocks/new-block/` directory
+2. **Update block.json** with correct asset paths (see section 3)
+3. **Update maw-blocks.php** to register the block (see section 10)
+4. **Update webpack.config.js** to build the block (see section 11)
+5. **Run build:** `npm run build`
+6. **Verify** block.json was copied to `build/blocks/new-block/block.json`
+7. **Test** block appears in WordPress editor under MAW Blocks category
 
 ## Block Creation Checklist
 
