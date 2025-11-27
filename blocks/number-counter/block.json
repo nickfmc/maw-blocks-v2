@@ -11,7 +11,7 @@
   "textdomain": "maw-blocks",
   "editorScript": "file:../../build/blocks/number-counter/index.js",
   "editorStyle": "file:../../build/blocks/number-counter/editor.css",
-  "style": "file:../../build/blocks/number-counter/style-style.css",
+  "style": "file:../../build/blocks/number-counter/style-index.css",
   "viewScript": "maw-blocks-number-counter-view",
   "attributes": {
     "number": {

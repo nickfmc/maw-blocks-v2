@@ -11,7 +11,7 @@
   "textdomain": "maw-blocks",
   "editorScript": "file:../../build/blocks/video/index.js",
   "editorStyle": "file:../../build/blocks/video/editor.css",
-  "style": "file:../../build/blocks/video/style-style.css",
+  "style": "file:../../build/blocks/video/style-index.css",
   "viewScript": "maw-blocks-video-view",
   "attributes": {
     "videoUrl": {

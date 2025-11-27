@@ -11,7 +11,7 @@
   "textdomain": "maw-blocks",
   "editorScript": "file:../../build/blocks/masonry/index.js",
   "editorStyle": "file:../../build/blocks/masonry/editor.css",
-  "style": "file:../../build/blocks/masonry/style-style.css",
+  "style": "file:../../build/blocks/masonry/style-index.css",
   "viewScript": "maw-blocks-masonry-view",
   "attributes": {
     "columns": {

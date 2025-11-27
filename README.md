@@ -320,7 +320,7 @@ All blocks MUST use the following exact asset path pattern to point to the compi
 
 1. **Asset paths MUST point to `../../build/blocks/{block-name}/`** - This ensures WordPress loads the compiled, production-ready files
 2. **Category MUST be `maw-blocks`** - All blocks use the custom MAW Blocks category
-3. **Style file is named `style-style.css`** - Due to webpack compilation naming
+3. **Style file is named `style-index.css`** - This is how webpack outputs compiled style.scss files
 4. **viewScript uses handle format** - `maw-blocks-{block-name}-view` (registered separately in PHP)
 5. **Never use relative paths like `file:./index.js`** - This will load uncompiled source files and cause errors
 
@@ -332,7 +332,7 @@ All blocks MUST use the following exact asset path pattern to point to the compi
   "category": "maw-blocks",
   "editorScript": "file:../../build/blocks/accordion/index.js",
   "editorStyle": "file:../../build/blocks/accordion/editor.css",
-  "style": "file:../../build/blocks/accordion/style-style.css",
+  "style": "file:../../build/blocks/accordion/style-index.css",
   "viewScript": "maw-blocks-accordion-view"
 }
 ```

@@ -11,7 +11,7 @@
   "textdomain": "maw-blocks",
   "editorScript": "file:../../build/blocks/testimonial-slider/index.js",
   "editorStyle": "file:../../build/blocks/testimonial-slider/editor.css",
-  "style": "file:../../build/blocks/testimonial-slider/style-style.css",
+  "style": "file:../../build/blocks/testimonial-slider/style-index.css",
   "viewScript": "maw-blocks-testimonial-slider-view",
   "attributes": {
     "testimonials": {
