@@ -10,7 +10,7 @@
   "apiVersion": 3,
   "editorScript": "file:../../build/blocks/google-map/index.js",
   "editorStyle": "file:../../build/blocks/google-map/editor.css",
-  "style": "file:../../build/blocks/google-map/style-index.css",
+  "style": "file:../../build/blocks/google-map/style-style.css",
   "viewScript": "maw-blocks-google-map-view",
   "attributes": {
     "latitude": {

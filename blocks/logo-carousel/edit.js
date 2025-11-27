@@ -69,9 +69,9 @@ export default function Edit({ attributes, setAttributes }) {
                         value={speed}
                         onChange={(value) => setAttributes({ speed: value })}
                         min={5}
-                        max={120}
+                        max={300}
                         step={5}
-                        help={__('Time for one complete loop', 'maw-blocks')}
+                        help={__('Time for one complete loop (5-300 seconds)', 'maw-blocks')}
                     />
                     <SelectControl
                         label={__('Direction', 'maw-blocks')}

@@ -7,6 +7,36 @@
 @import 'variables';
 @import 'editor-panels';
 
+// Ensure all interactive elements in MAW blocks are clickable
+[class^="maw-"],
+[class*=" maw-"] {
+  // All buttons and interactive elements should be above decorative elements
+  .components-button,
+  button,
+  .wp-block-button,
+  input,
+  select,
+  textarea,
+  .components-base-control,
+  .components-panel__body,
+  .block-editor-block-list__block {
+    position: relative;
+    z-index: 10;
+  }
+
+  // Block appender needs higher z-index
+  .block-list-appender {
+    position: relative;
+    z-index: 15;
+  }
+
+  // Decorative pseudo-elements should stay below
+  &::before,
+  &::after {
+    z-index: 1;
+  }
+}
+
 // Global arrow styles for shared components
 .maw-arrow {
   display: inline-block;
