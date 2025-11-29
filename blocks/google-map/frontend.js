@@ -62,7 +62,7 @@ class MAWGoogleMapController {
     async loadGoogleMapsAPI() {
         return new Promise((resolve, reject) => {
             // Check if Google Maps is already loaded
-            if (window.google && window.google.maps) {
+            if (window.google && window.google.maps && window.google.maps.Map) {
                 this.apiLoaded = true;
                 resolve();
                 return;
@@ -72,7 +72,7 @@ class MAWGoogleMapController {
             if (document.querySelector('script[src*="maps.googleapis.com"]')) {
                 // Wait for it to load
                 const checkLoaded = setInterval(() => {
-                    if (window.google && window.google.maps) {
+                    if (window.google && window.google.maps && window.google.maps.Map) {
                         this.apiLoaded = true;
                         clearInterval(checkLoaded);
                         resolve();
@@ -81,14 +81,29 @@ class MAWGoogleMapController {
                 return;
             }
 
-            // Load the API
-            window.mawGoogleMapsInit = () => {
-                this.apiLoaded = true;
-                resolve();
-            };
-
+            // Load the API without the marker library (using standard markers)
             const script = document.createElement('script');
-            script.src = `https://maps.googleapis.com/maps/api/js?key=${this.apiKey}&callback=mawGoogleMapsInit`;
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${this.apiKey}&v=weekly`;
+            script.async = true;
+            script.defer = true;
+            script.onload = () => {
+                // Wait a bit for the API to fully initialize
+                const checkReady = setInterval(() => {
+                    if (window.google && window.google.maps && window.google.maps.Map) {
+                        this.apiLoaded = true;
+                        clearInterval(checkReady);
+                        resolve();
+                    }
+                }, 50);
+                
+                // Timeout after 5 seconds
+                setTimeout(() => {
+                    clearInterval(checkReady);
+                    if (!this.apiLoaded) {
+                        reject(new Error('Google Maps API failed to initialize'));
+                    }
+                }, 5000);
+            };
             script.onerror = () => {
                 reject(new Error('Failed to load Google Maps API'));
             };
@@ -100,9 +115,9 @@ class MAWGoogleMapController {
     initializeMaps() {
         const mapContainers = document.querySelectorAll('.maw-google-map__container');
         
-        mapContainers.forEach((container, index) => {
+        mapContainers.forEach(async (container, index) => {
             try {
-                this.initializeMap(container, index);
+                await this.initializeMap(container, index);
             } catch (error) {
                 console.error('MAW Google Map: Failed to initialize map', error);
                 this.showError('Failed to initialize map', container);
@@ -169,6 +184,8 @@ class MAWGoogleMapController {
 
         // Add marker if requested
         if (config.showMarker) {
+            // Use legacy Marker for better compatibility
+            // AdvancedMarkerElement requires a Map ID which most sites don't have configured
             const marker = new google.maps.Marker({
                 position: { lat: config.latitude, lng: config.longitude },
                 map: map,

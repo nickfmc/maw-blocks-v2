@@ -11,7 +11,7 @@
   "textdomain": "maw-blocks",
   "editorScript": "file:../../build/blocks/slider/index.js",
   "editorStyle": "file:../../build/blocks/slider/editor.css",
-  "style": "file:../../build/blocks/slider/style-index.css",
+  "style": "file:../../build/blocks/slider/style-style.css",
   "viewScript": "maw-blocks-slider-view",
   "attributes": {
     "showArrows": {
