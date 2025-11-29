@@ -46,7 +46,7 @@
     },
     "arrowIcon": {
       "type": "string",
-      "default": "chevron"
+      "default": "arrow"
     },
     "showDots": {
       "type": "boolean",

@@ -117,7 +117,7 @@ export default function Edit({ attributes, setAttributes }) {
                         renderAppender={InnerBlocks.ButtonBlockAppender}
                     />
                 </div>
-                <NavigationArrows showArrows={showArrows} />
+                <NavigationArrows showArrows={showArrows} arrowIcon={arrowIcon} />
                 {showDots && (
                     <div className={`maw-slider__dots maw-slider__dots--${dotsPosition}`}>
                         <span className="maw-slider__dot maw-slider__dot--active"></span>

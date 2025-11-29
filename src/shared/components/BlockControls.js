@@ -37,9 +37,11 @@ export const NavigationPanel = ({ settings, onChange }) => (
                     options={[
                         { label: __('Chevron', 'maw-blocks'), value: 'chevron' },
                         { label: __('Arrow', 'maw-blocks'), value: 'arrow' },
-                        { label: __('Angle', 'maw-blocks'), value: 'angle' }
+                        { label: __('Angle', 'maw-blocks'), value: 'angle' },
+                        { label: __('Custom', 'maw-blocks'), value: 'custom' }
                     ]}
                     onChange={(value) => onChange({ ...settings, arrowIcon: value })}
+                    help={settings.arrowIcon === 'custom' ? __('Uses arrows from Plugin Settings > Arrow Settings', 'maw-blocks') : ''}
                 />
                 <SelectControl
                     label={__('Arrow Position', 'maw-blocks')}

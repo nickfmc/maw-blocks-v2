@@ -4,6 +4,40 @@
  * Handles slider functionality without external dependencies
  */
 
+// Predefined arrow icons
+const ARROW_ICONS = {
+    chevron: {
+        left: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>',
+        right: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>'
+    },
+    arrow: {
+        left: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>',
+        right: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'
+    },
+    angle: {
+        left: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>',
+        right: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>'
+    }
+};
+
+// Default arrows (fallback)
+const DEFAULT_ARROWS = ARROW_ICONS.arrow;
+
+/**
+ * Get arrows based on icon type
+ */
+const getArrowsByType = (arrowIcon = 'arrow') => {
+    // If arrowIcon is 'custom', use global settings
+    if (arrowIcon === 'custom') {
+        if (typeof window.mawBlocksArrows !== 'undefined') {
+            return window.mawBlocksArrows;
+        }
+    }
+    
+    // Use predefined icon or fallback to default
+    return ARROW_ICONS[arrowIcon] || DEFAULT_ARROWS;
+};
+
 export class SliderController {
     constructor() {
         this.instances = [];
@@ -89,13 +123,33 @@ class SliderInstance {
 
         if (prevButton) {
             prevButton.addEventListener('click', () => this.prev());
+            // Only update arrow HTML if it's not already using custom arrows from save component
+            const arrowIcon = this.element.getAttribute('data-arrow-icon') || 'arrow';
+            if (arrowIcon !== 'custom') {
+                this.updateArrowHTML(prevButton, 'left');
+            }
         }
 
         if (nextButton) {
             nextButton.addEventListener('click', () => this.next());
+            // Only update arrow HTML if it's not already using custom arrows from save component
+            const arrowIcon = this.element.getAttribute('data-arrow-icon') || 'arrow';
+            if (arrowIcon !== 'custom') {
+                this.updateArrowHTML(nextButton, 'right');
+            }
         }
 
         this.updateNavigationState();
+    }
+
+    updateArrowHTML(button, direction) {
+        const arrowIcon = this.element.getAttribute('data-arrow-icon') || 'arrow';
+        const arrows = getArrowsByType(arrowIcon);
+        const arrowSpan = button.querySelector('span[aria-hidden="true"]');
+        
+        if (arrowSpan && arrows[direction]) {
+            arrowSpan.innerHTML = arrows[direction];
+        }
     }
 
     setupDots() {

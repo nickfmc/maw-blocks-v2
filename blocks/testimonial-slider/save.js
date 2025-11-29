@@ -135,7 +135,7 @@ export default function save({ attributes }) {
                         >
                             <span 
                                 aria-hidden="true"
-                                dangerouslySetInnerHTML={{ __html: getArrowHTML('left') }}
+                                dangerouslySetInnerHTML={{ __html: getArrowHTML('left', arrowIcon) }}
                             />
                         </button>
                         <button
@@ -145,7 +145,7 @@ export default function save({ attributes }) {
                         >
                             <span 
                                 aria-hidden="true"
-                                dangerouslySetInnerHTML={{ __html: getArrowHTML('right') }}
+                                dangerouslySetInnerHTML={{ __html: getArrowHTML('right', arrowIcon) }}
                             />
                         </button>
                     </div>
