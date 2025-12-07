@@ -42,6 +42,10 @@ module.exports = {
         'blocks/google-map/style': './blocks/google-map/style.scss',
         'blocks/google-map/editor': './blocks/google-map/editor.scss',
         'blocks/google-map/frontend': './blocks/google-map/frontend.js',
+        'blocks/video-modal/index': './blocks/video-modal/index.js',
+        'blocks/video-modal/style': './blocks/video-modal/style.scss',
+        'blocks/video-modal/editor': './blocks/video-modal/editor.scss',
+        'blocks/video-modal/frontend': './blocks/video-modal/frontend.js',
         'editor': './assets/scss/editor.scss'
     },
     output: {
@@ -59,7 +63,8 @@ module.exports = {
                 { from: 'blocks/number-counter/block.json', to: 'blocks/number-counter/block.json' },
                 { from: 'blocks/masonry/block.json', to: 'blocks/masonry/block.json' },
                 { from: 'blocks/icon-list/block.json', to: 'blocks/icon-list/block.json' },
-                { from: 'blocks/google-map/block.json', to: 'blocks/google-map/block.json' }
+                { from: 'blocks/google-map/block.json', to: 'blocks/google-map/block.json' },
+                { from: 'blocks/video-modal/block.json', to: 'blocks/video-modal/block.json' }
             ]
         })
     ]

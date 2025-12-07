@@ -172,6 +172,14 @@ class MAW_Blocks {
                 'icon' => 'location-alt',
                 'category' => 'maw-blocks',
                 'path' => 'blocks/google-map'
+            ],
+            'video-modal' => [
+                'name' => 'maw-blocks/video-modal',
+                'title' => 'MAW Video Modal',
+                'description' => 'Video popup with cover image trigger - supports self-hosted and YouTube videos',
+                'icon' => 'format-video',
+                'category' => 'maw-blocks',
+                'path' => 'blocks/video-modal'
             ]
         ];
 
@@ -245,16 +253,7 @@ class MAW_Blocks {
             }
 
             if (file_exists($block_path . '/block.json')) {
-                $registered_block = register_block_type($block_path, [
-                    'render_callback' => function($attributes, $content) use ($block_id) {
-                        // Enqueue the frontend script when block is rendered
-                        $script_handle = 'maw-blocks-' . $block_id . '-view';
-                        if (wp_script_is($script_handle, 'registered')) {
-                            wp_enqueue_script($script_handle);
-                        }
-                        return $content;
-                    }
-                ]);
+                $registered_block = register_block_type($block_path);
                 error_log('MAW Blocks: Registered block ' . $block_id . ' - Type: ' . get_class($registered_block));
             }
         }

@@ -1,0 +1,95 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "maw-blocks/video-modal",
+  "version": "1.0.0",
+  "title": "MAW Video Modal",
+  "category": "maw-blocks",
+  "icon": "format-video",
+  "description": "Video popup with cover image trigger - supports self-hosted and YouTube videos",
+  "keywords": ["video", "modal", "popup", "lightbox", "youtube"],
+  "textdomain": "maw-blocks",
+  "editorScript": "file:../../build/blocks/video-modal/index.js",
+  "editorStyle": "file:../../build/blocks/video-modal/editor.css",
+  "style": "file:../../build/blocks/video-modal/style-style.css",
+  "viewScript": "maw-blocks-video-modal-view",
+  "attributes": {
+    "videoSource": {
+      "type": "string",
+      "default": "self-hosted",
+      "enum": ["self-hosted", "youtube"]
+    },
+    "videoUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "videoId": {
+      "type": "number"
+    },
+    "youtubeUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "coverImageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "coverImageId": {
+      "type": "number"
+    },
+    "coverImageAlt": {
+      "type": "string",
+      "default": ""
+    },
+    "showPlayIcon": {
+      "type": "boolean",
+      "default": true
+    },
+    "playIconStyle": {
+      "type": "string",
+      "default": "filled",
+      "enum": ["filled", "outline", "minimal"]
+    },
+    "playIconSize": {
+      "type": "string",
+      "default": "medium",
+      "enum": ["small", "medium", "large"]
+    },
+    "useInnerBlocks": {
+      "type": "boolean",
+      "default": false
+    },
+    "aspectRatio": {
+      "type": "string",
+      "default": "16:9"
+    },
+    "modalSize": {
+      "type": "string",
+      "default": "large",
+      "enum": ["medium", "large", "fullscreen"]
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": true
+    },
+    "overlayColor": {
+      "type": "string",
+      "default": "#000000"
+    },
+    "overlayOpacity": {
+      "type": "number",
+      "default": 0.6,
+      "minimum": 0,
+      "maximum": 1
+    }
+  },
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "customClassName": true,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  }
+}

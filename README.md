@@ -45,6 +45,52 @@ Viewport-aware video player with autoplay functionality.
 .maw-video--aspect-16-9
 ```
 
+### MAW Video Modal Block
+Video popup with cover image trigger - supports self-hosted and YouTube videos.
+
+**Features:**
+- Self-hosted video or YouTube URL support
+- Cover image as trigger
+- Play icon options (filled, outline, minimal) with size controls
+- Use InnerBlocks for custom trigger content
+- Modal size options (medium, large, fullscreen)
+- Autoplay when modal opens
+- Aspect ratio controls (16:9, 4:3, 1:1, 9:16)
+- Keyboard accessible (Escape to close)
+- Stops video when modal closes
+
+**CSS Classes:**
+```
+.maw-video-modal
+  .maw-video-modal__trigger
+  .maw-video-modal__cover
+  .maw-video-modal__overlay
+  .maw-video-modal__play-button
+    .maw-video-modal__play-button--filled
+    .maw-video-modal__play-button--outline
+    .maw-video-modal__play-button--minimal
+  .maw-video-modal__play-icon
+.maw-video-modal--icon-small
+.maw-video-modal--icon-medium
+.maw-video-modal--icon-large
+.maw-video-modal--modal-medium
+.maw-video-modal--modal-large
+.maw-video-modal--modal-fullscreen
+
+// Modal overlay (injected into DOM)
+.maw-video-modal-overlay
+  .maw-video-modal-overlay__content
+  .maw-video-modal-overlay__close
+  .maw-video-modal-overlay__video-wrapper
+  .maw-video-modal-overlay__video
+  .maw-video-modal-overlay__iframe
+.maw-video-modal-overlay--open
+.maw-video-modal-overlay--medium
+.maw-video-modal-overlay--large
+.maw-video-modal-overlay--fullscreen
+.maw-video-modal-overlay--aspect-16-9
+```
+
 ### MAW Slider Block
 General purpose slider using WordPress InnerBlocks for maximum flexibility.
 

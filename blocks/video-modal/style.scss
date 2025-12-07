@@ -1,0 +1,240 @@
+/**
+ * Video Modal Block Styles
+ *
+ * Minimal functional styles only
+ */
+
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+
+.maw-video-modal {
+  position: relative;
+  width: 100%;
+
+  &__trigger {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    overflow: hidden;
+
+    &:focus {
+      outline: 2px solid var(--maw-color-primary, #000);
+      outline-offset: 2px;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--maw-color-primary, #000);
+      outline-offset: 2px;
+    }
+  }
+
+  &__cover {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.1);
+    transition: background var(--maw-transition-speed, 300ms) var(--maw-transition-timing, ease);
+  }
+
+  &__trigger:hover &__overlay {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  &__play-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--maw-video-modal-play-color, #fff);
+    transition: transform var(--maw-transition-speed, 300ms) var(--maw-transition-timing, ease);
+  }
+
+  &__trigger:hover &__play-button {
+    transform: scale(1.1);
+  }
+
+  &__play-icon {
+    display: block;
+  }
+
+  // Icon sizes
+  &.maw-video-modal--icon-small &__play-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  &.maw-video-modal--icon-medium &__play-icon {
+    width: 72px;
+    height: 72px;
+  }
+
+  &.maw-video-modal--icon-large &__play-icon {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+// Modal Overlay
+.maw-video-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--maw-spacing-md, 1.5rem);
+  background: rgba(0, 0, 0, 0.9);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 300ms ease, visibility 300ms ease;
+
+  &.maw-video-modal-overlay--open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__content {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    background: #000;
+    transform: scale(0.9);
+    transition: transform 300ms ease;
+  }
+
+  &--open &__content {
+    transform: scale(1);
+  }
+
+  // Modal sizes
+  &.maw-video-modal-overlay--medium &__content {
+    max-width: 640px;
+  }
+
+  &.maw-video-modal-overlay--large &__content {
+    max-width: 960px;
+  }
+
+  &.maw-video-modal-overlay--fullscreen &__content {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #fff;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 200ms ease;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:focus {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+    }
+  }
+
+  &__video-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  // Aspect ratios
+  &--aspect-16-9 &__video-wrapper {
+    @include maw-aspect-ratio(16, 9);
+  }
+
+  &--aspect-4-3 &__video-wrapper {
+    @include maw-aspect-ratio(4, 3);
+  }
+
+  &--aspect-1-1 &__video-wrapper {
+    @include maw-aspect-ratio(1, 1);
+  }
+
+  &--aspect-9-16 &__video-wrapper {
+    @include maw-aspect-ratio(9, 16);
+  }
+
+  &__video,
+  &__iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+}
+
+// Fullscreen adjustments
+.maw-video-modal-overlay--fullscreen {
+  padding: 0;
+
+  .maw-video-modal-overlay__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+  }
+
+  .maw-video-modal-overlay__close {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+  }
+
+  .maw-video-modal-overlay__video-wrapper {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 0 !important;
+  }
+
+  .maw-video-modal-overlay__video,
+  .maw-video-modal-overlay__iframe {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    object-fit: contain;
+  }
+}
+
+// Body class when modal is open
+body.maw-video-modal-open {
+  overflow: hidden;
+}
