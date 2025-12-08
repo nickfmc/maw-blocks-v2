@@ -49,6 +49,14 @@
     "spacing": {
       "type": "number",
       "default": 40
+    },
+    "useManualWidths": {
+      "type": "boolean",
+      "default": false
+    },
+    "logoWidths": {
+      "type": "array",
+      "default": []
     }
   },
   "supports": {

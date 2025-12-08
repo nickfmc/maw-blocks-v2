@@ -1,6 +1,6 @@
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
-import { PanelBody, RangeControl, ToggleControl, SelectControl, Button } from '@wordpress/components';
+import { PanelBody, RangeControl, ToggleControl, SelectControl, Button, TextControl } from '@wordpress/components';
 import { blockClass, elementClass } from '../../src/shared/utils/classnames';
 
 export default function Edit({ attributes, setAttributes }) {
@@ -13,12 +13,15 @@ export default function Edit({ attributes, setAttributes }) {
         logosInViewTablet,
         logosInViewMobile,
         logoHeight,
-        spacing
+        spacing,
+        useManualWidths,
+        logoWidths
     } = attributes;
 
     const blockProps = useBlockProps({
         className: blockClass('logo-carousel', {
             'pause-on-hover': pauseOnHover,
+            'manual-widths': useManualWidths,
             [`direction-${direction}`]: true
         })
     });
@@ -29,12 +32,20 @@ export default function Edit({ attributes, setAttributes }) {
             url: media.url,
             alt: media.alt || ''
         }];
-        setAttributes({ logos: newLogos });
+        const newWidths = [...logoWidths, 150]; // Default width for new logos
+        setAttributes({ 
+            logos: newLogos,
+            logoWidths: newWidths
+        });
     };
 
     const removeLogo = (index) => {
         const newLogos = logos.filter((_, i) => i !== index);
-        setAttributes({ logos: newLogos });
+        const newWidths = logoWidths.filter((_, i) => i !== index);
+        setAttributes({ 
+            logos: newLogos,
+            logoWidths: newWidths
+        });
     };
 
     const moveLogo = (fromIndex, toIndex) => {
@@ -43,7 +54,15 @@ export default function Edit({ attributes, setAttributes }) {
         const newLogos = [...logos];
         const [movedLogo] = newLogos.splice(fromIndex, 1);
         newLogos.splice(toIndex, 0, movedLogo);
-        setAttributes({ logos: newLogos });
+        
+        const newWidths = [...logoWidths];
+        const [movedWidth] = newWidths.splice(fromIndex, 1);
+        newWidths.splice(toIndex, 0, movedWidth);
+        
+        setAttributes({ 
+            logos: newLogos,
+            logoWidths: newWidths
+        });
     };
 
     const moveLogoUp = (index) => {
@@ -59,6 +78,25 @@ export default function Edit({ attributes, setAttributes }) {
         newLogos[index] = { ...newLogos[index], alt };
         setAttributes({ logos: newLogos });
     };
+
+    const updateLogoWidth = (index, width) => {
+        const newWidths = [...logoWidths];
+        newWidths[index] = parseInt(width) || 150;
+        setAttributes({ logoWidths: newWidths });
+    };
+
+    // Ensure logoWidths array matches logos array length
+    const ensureWidthsArray = () => {
+        if (logoWidths.length !== logos.length) {
+            const newWidths = logos.map((_, index) => logoWidths[index] || 150);
+            setAttributes({ logoWidths: newWidths });
+        }
+    };
+
+    // Initialize widths if needed
+    if (useManualWidths && logoWidths.length !== logos.length) {
+        ensureWidthsArray();
+    }
 
     return (
         <>
@@ -87,14 +125,23 @@ export default function Edit({ attributes, setAttributes }) {
                         checked={pauseOnHover}
                         onChange={(value) => setAttributes({ pauseOnHover: value })}
                     />
-                    <RangeControl
-                        label={__('Logo Height (px)', 'maw-blocks')}
-                        value={logoHeight}
-                        onChange={(value) => setAttributes({ logoHeight: value })}
-                        min={30}
-                        max={200}
-                        step={5}
+                    <ToggleControl
+                        label={__('Use Manual Widths', 'maw-blocks')}
+                        checked={useManualWidths}
+                        onChange={(value) => setAttributes({ useManualWidths: value })}
+                        help={__('Enable to set custom width for each logo instead of uniform height', 'maw-blocks')}
                     />
+                    {!useManualWidths && (
+                        <RangeControl
+                            label={__('Logo Height (px)', 'maw-blocks')}
+                            value={logoHeight}
+                            onChange={(value) => setAttributes({ logoHeight: value })}
+                            min={30}
+                            max={200}
+                            step={5}
+                            help={__('All logos will have the same height', 'maw-blocks')}
+                        />
+                    )}
                     <RangeControl
                         label={__('Spacing Between Logos (px)', 'maw-blocks')}
                         value={spacing}
@@ -162,9 +209,24 @@ export default function Edit({ attributes, setAttributes }) {
                                             <img
                                                 src={logo.url}
                                                 alt={logo.alt}
-                                                style={{ height: `${logoHeight}px` }}
+                                                style={
+                                                    useManualWidths 
+                                                        ? { width: `${logoWidths[index] || 150}px`, height: 'auto' }
+                                                        : { height: `${logoHeight}px` }
+                                                }
                                             />
                                             <div className={elementClass('logo-carousel', 'item-controls')}>
+                                                {useManualWidths && (
+                                                    <TextControl
+                                                        label={__('Width (px)', 'maw-blocks')}
+                                                        type="number"
+                                                        value={logoWidths[index] || 150}
+                                                        onChange={(value) => updateLogoWidth(index, value)}
+                                                        min={50}
+                                                        max={500}
+                                                        className={elementClass('logo-carousel', 'width-input')}
+                                                    />
+                                                )}
                                                 <div className={elementClass('logo-carousel', 'reorder-controls')}>
                                                     <Button
                                                         isSmall

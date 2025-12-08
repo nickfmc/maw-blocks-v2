@@ -114,6 +114,21 @@
     transition: opacity 0.2s ease;
   }
 
+  &__width-input {
+    margin-bottom: 8px;
+
+    input {
+      font-size: 12px;
+      padding: 4px 8px;
+      height: 32px;
+    }
+
+    .components-base-control__label {
+      font-size: 11px;
+      margin-bottom: 4px;
+    }
+  }
+
   &__reorder-controls {
     display: flex;
     gap: 4px;

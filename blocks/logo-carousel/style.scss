@@ -57,6 +57,16 @@
       object-fit: contain;
       display: block;
     }
+
+    // Manual widths mode - center align logos
+    .maw-logo-carousel--manual-widths & {
+      height: auto;
+      
+      img {
+        height: auto;
+        width: auto;
+      }
+    }
   }
 
   &--pause-on-hover {

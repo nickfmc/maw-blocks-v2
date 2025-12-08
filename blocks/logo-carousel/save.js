@@ -11,12 +11,15 @@ export default function Save({ attributes }) {
         logosInViewTablet,
         logosInViewMobile,
         logoHeight,
-        spacing
+        spacing,
+        useManualWidths,
+        logoWidths
     } = attributes;
 
     const blockProps = useBlockProps.save({
         className: blockClass('logo-carousel', {
             'pause-on-hover': pauseOnHover,
+            'manual-widths': useManualWidths,
             [`direction-${direction}`]: true
         }),
         'data-speed': speed,
@@ -26,7 +29,8 @@ export default function Save({ attributes }) {
         'data-logos-in-view-tablet': logosInViewTablet,
         'data-logos-in-view-mobile': logosInViewMobile,
         'data-logo-height': logoHeight,
-        'data-spacing': spacing
+        'data-spacing': spacing,
+        'data-use-manual-widths': useManualWidths
     });
 
     if (logos.length === 0) {
@@ -42,11 +46,13 @@ export default function Save({ attributes }) {
                             <div
                                 key={`${logo.id}-${index}`}
                                 className={elementClass('logo-carousel', 'item')}
+                                {...(useManualWidths && logoWidths[index] ? { 'data-width': logoWidths[index] } : {})}
                             >
                                 <img
                                     src={logo.url}
                                     alt={logo.alt}
                                     loading="lazy"
+                                    {...(useManualWidths && logoWidths[index] ? { style: { width: `${logoWidths[index]}px`, height: 'auto' } } : {})}
                                 />
                             </div>
                         ))}

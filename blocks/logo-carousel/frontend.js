@@ -23,7 +23,8 @@ class LogoCarouselController {
             logosInViewTablet: parseInt(element.dataset.logosInViewTablet) || 3,
             logosInViewMobile: parseInt(element.dataset.logosInViewMobile) || 2,
             logoHeight: parseInt(element.dataset.logoHeight) || 60,
-            spacing: parseInt(element.dataset.spacing) || 40
+            spacing: parseInt(element.dataset.spacing) || 40,
+            useManualWidths: element.dataset.useManualWidths === 'true'
         };
 
         this.init();
@@ -40,7 +41,9 @@ class LogoCarouselController {
 
     setupStyles() {
         this.element.style.setProperty('--maw-carousel-speed', `${this.config.speed}s`);
-        this.element.style.setProperty('--maw-carousel-logo-height', `${this.config.logoHeight}px`);
+        if (!this.config.useManualWidths) {
+            this.element.style.setProperty('--maw-carousel-logo-height', `${this.config.logoHeight}px`);
+        }
         this.element.style.setProperty('--maw-carousel-spacing', `${this.config.spacing}px`);
     }
 
