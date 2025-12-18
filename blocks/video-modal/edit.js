@@ -48,13 +48,17 @@ export default function Edit({ attributes, setAttributes }) {
         showPlayIcon,
         playIconStyle,
         playIconSize,
-    useInnerBlocks,
-    aspectRatio,
-    modalSize,
-    autoplay,
-    overlayColor,
-    overlayOpacity
-    } = attributes;    const blockProps = useBlockProps({
+        useInnerBlocks,
+        aspectRatio,
+        modalSize,
+        autoplay,
+        overlayColor,
+        overlayOpacity,
+        externalTriggerId,
+        disableCoverTrigger
+    } = attributes;
+
+    const blockProps = useBlockProps({
         className: blockClass('video-modal', {
             'has-cover': coverImageUrl,
             'has-video': videoSource === 'self-hosted' ? videoUrl : youtubeUrl,
@@ -192,6 +196,23 @@ export default function Edit({ attributes, setAttributes }) {
                 </PanelBody>
 
                 <PanelBody title={__('Trigger Options', 'maw-blocks')} initialOpen={false}>
+                    <TextControl
+                        label={__('External Trigger ID', 'maw-blocks')}
+                        help={__('Enter the ID of an external element (without #) that will trigger this video modal. Leave empty to use only the cover image.', 'maw-blocks')}
+                        value={externalTriggerId}
+                        onChange={(value) => setAttributes({ externalTriggerId: value })}
+                        placeholder="my-button-id"
+                    />
+
+                    {externalTriggerId && (
+                        <ToggleControl
+                            label={__('Disable Cover Image Trigger', 'maw-blocks')}
+                            help={__('When enabled, only the external element will trigger the modal, not the cover image.', 'maw-blocks')}
+                            checked={disableCoverTrigger}
+                            onChange={(value) => setAttributes({ disableCoverTrigger: value })}
+                        />
+                    )}
+
                     <ToggleControl
                         label={__('Use Custom Content', 'maw-blocks')}
                         help={__('Add custom blocks on top of the cover image instead of the play icon', 'maw-blocks')}

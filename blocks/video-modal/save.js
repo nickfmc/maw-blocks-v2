@@ -35,7 +35,9 @@ export default function save({ attributes }) {
         modalSize,
         autoplay,
         overlayColor,
-        overlayOpacity
+        overlayOpacity,
+        externalTriggerId,
+        disableCoverTrigger
     } = attributes;
 
     // Don't render if no cover image
@@ -64,7 +66,9 @@ export default function save({ attributes }) {
         'data-modal-size': modalSize,
         'data-autoplay': autoplay,
         'data-overlay-color': overlayColor,
-        'data-overlay-opacity': overlayOpacity
+        'data-overlay-opacity': overlayOpacity,
+        'data-external-trigger-id': externalTriggerId || '',
+        'data-disable-cover-trigger': disableCoverTrigger
     });
 
     return (

@@ -53,24 +53,54 @@ if (window.MAWVideoModalInitialized) {
             // Store configuration
             this.modals.set(modalId, config);
 
-            // Bind click event
-            trigger.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                // Prevent opening multiple modals or opening while already opening
-                if (!this.isOpening && !this.activeModal) {
-                    this.openModal(modalId, config);
-                }
-            });
+            // Check if cover trigger should be disabled
+            const disableCoverTrigger = block.dataset.disableCoverTrigger === 'true';
 
-            // Bind keyboard events for accessibility
-            trigger.addEventListener('keydown', (e) => {
-                if ((e.key === 'Enter' || e.key === ' ') && !this.isOpening && !this.activeModal) {
+            // Bind click event to the cover image trigger (unless disabled)
+            if (!disableCoverTrigger) {
+                trigger.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    this.openModal(modalId, config);
+                    // Prevent opening multiple modals or opening while already opening
+                    if (!this.isOpening && !this.activeModal) {
+                        this.openModal(modalId, config);
+                    }
+                });
+
+                // Bind keyboard events for accessibility
+                trigger.addEventListener('keydown', (e) => {
+                    if ((e.key === 'Enter' || e.key === ' ') && !this.isOpening && !this.activeModal) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        this.openModal(modalId, config);
+                    }
+                });
+            }
+
+            // Bind external trigger if specified
+            const externalTriggerId = block.dataset.externalTriggerId;
+            if (externalTriggerId) {
+                const externalTrigger = document.getElementById(externalTriggerId);
+                if (externalTrigger) {
+                    externalTrigger.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if (!this.isOpening && !this.activeModal) {
+                            this.openModal(modalId, config);
+                        }
+                    });
+
+                    externalTrigger.addEventListener('keydown', (e) => {
+                        if ((e.key === 'Enter' || e.key === ' ') && !this.isOpening && !this.activeModal) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            this.openModal(modalId, config);
+                        }
+                    });
+                } else {
+                    console.warn(`MAW Video Modal: External trigger element with ID "${externalTriggerId}" not found.`);
                 }
-            });
+            }
         });
     }
 

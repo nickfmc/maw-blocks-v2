@@ -32,6 +32,25 @@
     }
   }
 
+  // Disable cursor when cover trigger is disabled
+  &[data-disable-cover-trigger="true"] &__trigger {
+    cursor: default;
+
+    &:focus,
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  // Disable hover effects when cover trigger is disabled
+  &[data-disable-cover-trigger="true"] &__trigger:hover &__overlay {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  &[data-disable-cover-trigger="true"] &__trigger:hover &__play-button {
+    transform: none;
+  }
+
   &__cover {
     display: block;
     width: 100%;

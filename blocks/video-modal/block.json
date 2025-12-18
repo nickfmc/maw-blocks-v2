@@ -81,6 +81,14 @@
       "default": 0.6,
       "minimum": 0,
       "maximum": 1
+    },
+    "externalTriggerId": {
+      "type": "string",
+      "default": ""
+    },
+    "disableCoverTrigger": {
+      "type": "boolean",
+      "default": false
     }
   },
   "supports": {
