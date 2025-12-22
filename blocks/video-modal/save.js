@@ -25,6 +25,7 @@ export default function save({ attributes }) {
         videoSource,
         videoUrl,
         youtubeUrl,
+        embedCode,
         coverImageUrl,
         coverImageAlt,
         showPlayIcon,
@@ -46,7 +47,7 @@ export default function save({ attributes }) {
     }
 
     // Don't render if no video source
-    const hasVideo = videoSource === 'self-hosted' ? videoUrl : getYouTubeId(youtubeUrl);
+    const hasVideo = videoSource === 'self-hosted' ? videoUrl : (videoSource === 'youtube' ? getYouTubeId(youtubeUrl) : embedCode);
     if (!hasVideo) {
         return null;
     }
@@ -62,6 +63,7 @@ export default function save({ attributes }) {
         'data-video-source': videoSource,
         'data-video-url': videoSource === 'self-hosted' ? videoUrl : '',
         'data-youtube-id': youtubeId || '',
+        'data-embed-code': videoSource === 'embed' ? embedCode : '',
         'data-aspect-ratio': aspectRatio,
         'data-modal-size': modalSize,
         'data-autoplay': autoplay,

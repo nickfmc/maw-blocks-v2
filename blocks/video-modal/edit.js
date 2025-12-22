@@ -42,6 +42,7 @@ export default function Edit({ attributes, setAttributes }) {
         videoUrl,
         videoId,
         youtubeUrl,
+        embedCode,
         coverImageUrl,
         coverImageId,
         coverImageAlt,
@@ -61,7 +62,7 @@ export default function Edit({ attributes, setAttributes }) {
     const blockProps = useBlockProps({
         className: blockClass('video-modal', {
             'has-cover': coverImageUrl,
-            'has-video': videoSource === 'self-hosted' ? videoUrl : youtubeUrl,
+            'has-video': videoSource === 'self-hosted' ? videoUrl : (videoSource === 'youtube' ? youtubeUrl : embedCode),
             'use-innerblocks': useInnerBlocks,
             [`icon-${playIconSize}`]: showPlayIcon && playIconSize
         }),
@@ -94,7 +95,8 @@ export default function Edit({ attributes, setAttributes }) {
                         value={videoSource}
                         options={[
                             { label: __('Self-Hosted', 'maw-blocks'), value: 'self-hosted' },
-                            { label: __('YouTube', 'maw-blocks'), value: 'youtube' }
+                            { label: __('YouTube', 'maw-blocks'), value: 'youtube' },
+                            { label: __('Embed (Vimeo, etc)', 'maw-blocks'), value: 'embed' }
                         ]}
                         onChange={(value) => setAttributes({ videoSource: value })}
                     />
@@ -146,6 +148,36 @@ export default function Edit({ attributes, setAttributes }) {
                             {youtubeId && (
                                 <p style={{ fontSize: '12px', color: '#059669', marginTop: '-8px' }}>
                                     ✓ {__('Valid YouTube URL detected', 'maw-blocks')}
+                                </p>
+                            )}
+                        </>
+                    )}
+
+                    {videoSource === 'embed' && (
+                        <>
+                            <label style={{ display: 'block', marginBottom: '8px', fontSize: '11px', fontWeight: '500', textTransform: 'uppercase' }}>
+                                {__('Embed Code', 'maw-blocks')}
+                            </label>
+                            <textarea
+                                style={{
+                                    width: '100%',
+                                    minHeight: '120px',
+                                    padding: '8px',
+                                    fontFamily: 'monospace',
+                                    fontSize: '12px',
+                                    border: '1px solid #ddd',
+                                    borderRadius: '2px'
+                                }}
+                                value={embedCode}
+                                onChange={(e) => setAttributes({ embedCode: e.target.value })}
+                                placeholder='<iframe src="https://player.vimeo.com/video/..." ...></iframe>'
+                            />
+                            <p style={{ fontSize: '12px', color: '#666', marginTop: '8px' }}>
+                                {__('Paste your embed code (iframe) from Vimeo or other video platforms', 'maw-blocks')}
+                            </p>
+                            {embedCode && embedCode.includes('<iframe') && (
+                                <p style={{ fontSize: '12px', color: '#059669', marginTop: '4px' }}>
+                                    ✓ {__('Embed code detected', 'maw-blocks')}
                                 </p>
                             )}
                         </>

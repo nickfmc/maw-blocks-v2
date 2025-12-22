@@ -17,9 +17,13 @@
     "videoSource": {
       "type": "string",
       "default": "self-hosted",
-      "enum": ["self-hosted", "youtube"]
+      "enum": ["self-hosted", "youtube", "embed"]
     },
     "videoUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "embedCode": {
       "type": "string",
       "default": ""
     },

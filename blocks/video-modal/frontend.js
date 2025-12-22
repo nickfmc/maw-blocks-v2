@@ -43,6 +43,7 @@ if (window.MAWVideoModalInitialized) {
                 videoSource: block.dataset.videoSource || 'self-hosted',
                 videoUrl: block.dataset.videoUrl || '',
                 youtubeId: block.dataset.youtubeId || '',
+                embedCode: block.dataset.embedCode || '',
                 aspectRatio: block.dataset.aspectRatio || '16:9',
                 modalSize: block.dataset.modalSize || 'large',
                 autoplay: block.dataset.autoplay === 'true',
@@ -143,6 +144,9 @@ if (window.MAWVideoModalInitialized) {
                     allowfullscreen
                 ></iframe>
             `;
+        } else if (config.videoSource === 'embed' && config.embedCode) {
+            // Use the embed code directly, but ensure it has the proper class
+            videoElement = config.embedCode.replace('<iframe', '<iframe class="maw-video-modal-overlay__iframe"');
         } else if (config.videoUrl) {
             const autoplayAttr = config.autoplay ? 'autoplay' : '';
             videoElement = `
