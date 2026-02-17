@@ -43,7 +43,9 @@ export default function Edit({ attributes, setAttributes }) {
         slidesPerViewTablet,
         slidesPerViewMobile,
         spaceBetween,
-        effect
+        effect,
+        slideWidthMode,
+        slideWidth
     } = attributes;
 
     const blockProps = useBlockProps({
@@ -73,7 +75,9 @@ export default function Edit({ attributes, setAttributes }) {
         endBehavior,
         speed,
         slidesPerView,
-        spaceBetween
+        spaceBetween,
+        slideWidthMode,
+        slideWidth
     };
 
     const responsiveSettings = {
@@ -92,10 +96,12 @@ export default function Edit({ attributes, setAttributes }) {
                     settings={behaviorSettings}
                     onChange={(newSettings) => setAttributes(newSettings)}
                 />
-                <ResponsivePanel
-                    settings={responsiveSettings}
-                    onChange={(newSettings) => setAttributes(newSettings)}
-                />
+                {slideWidthMode === 'auto' && (
+                    <ResponsivePanel
+                        settings={responsiveSettings}
+                        onChange={(newSettings) => setAttributes(newSettings)}
+                    />
+                )}
                 <PanelBody title={__('Effects', 'maw-blocks')} initialOpen={false}>
                     <SelectControl
                         label={__('Transition Effect', 'maw-blocks')}

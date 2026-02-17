@@ -23,7 +23,9 @@ export default function save({ attributes }) {
         slidesPerViewTablet,
         slidesPerViewMobile,
         spaceBetween,
-        effect
+        effect,
+        slideWidthMode,
+        slideWidth
     } = attributes;
 
     const blockProps = useBlockProps.save({
@@ -45,7 +47,9 @@ export default function save({ attributes }) {
         'data-slides-per-view-mobile': slidesPerViewMobile,
         'data-space-between': spaceBetween,
         'data-effect': effect,
-        'data-arrow-icon': arrowIcon
+        'data-arrow-icon': arrowIcon,
+        'data-slide-width-mode': slideWidthMode,
+        'data-slide-width': slideWidth
     });
 
     return (

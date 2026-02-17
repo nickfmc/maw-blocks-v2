@@ -77,7 +77,15 @@ class SliderInstance {
             slidesPerViewTablet: parseInt(element.getAttribute('data-slides-per-view-tablet')) || 1,
             slidesPerViewMobile: parseInt(element.getAttribute('data-slides-per-view-mobile')) || 1,
             spaceBetween: parseInt(element.getAttribute('data-space-between')) || 20,
-            effect: element.getAttribute('data-effect') || 'slide'
+            effect: element.getAttribute('data-effect') || 'slide',
+            slideWidthMode: element.getAttribute('data-slide-width-mode') || 'auto',
+            slideWidth: parseInt(element.getAttribute('data-slide-width')) || 300
+        };
+
+        this.currentSlidesPerView = this.config.slidesPerView;
+        this.breakpoints = {
+            mobile: 768,
+            tablet: 1024
         };
 
         this.init();
@@ -115,6 +123,10 @@ class SliderInstance {
         if (this.config.effect === 'fade') {
             this.slides[0].classList.add('is-active');
         }
+
+        // Set up responsive breakpoints and CSS custom properties
+        this.updateResponsiveSettings();
+        this.applyCSSProperties();
     }
 
     setupNavigation() {
@@ -174,10 +186,22 @@ class SliderInstance {
             return;
         }
 
-        const slideWidth = 100 / this.config.slidesPerView;
-        const offset = -(this.currentIndex * slideWidth);
-
-        this.wrapper.style.transform = `translateX(${offset}%)`;
+        if (this.config.slideWidthMode === 'fixed') {
+            // For fixed width mode, calculate offset in pixels
+            const slideWidth = this.config.slideWidth;
+            const gap = this.config.spaceBetween;
+            const offset = -(this.currentIndex * (slideWidth + gap));
+            this.wrapper.style.transform = `translateX(${offset}px)`;
+        } else {
+            // For auto mode, use pixel-based calculation for accuracy
+            const firstSlide = this.slides[0];
+            if (firstSlide) {
+                const slideWidth = firstSlide.offsetWidth;
+                const gap = this.config.spaceBetween;
+                const offset = -(this.currentIndex * (slideWidth + gap));
+                this.wrapper.style.transform = `translateX(${offset}px)`;
+            }
+        }
     }
 
     updateDots() {
@@ -197,7 +221,7 @@ class SliderInstance {
         const nextButton = this.element.querySelector('.maw-slider__arrow--next, .maw-testimonial-slider__arrow--next');
 
         if (prevButton && nextButton) {
-            const maxIndex = this.slides.length - this.config.slidesPerView;
+            const maxIndex = this.slides.length - this.currentSlidesPerView;
 
             if (this.config.endBehavior === 'disable') {
                 // Disable arrows at ends when endBehavior is 'disable'
@@ -214,7 +238,7 @@ class SliderInstance {
     next() {
         if (this.isAnimating) return;
 
-        const maxIndex = this.slides.length - this.config.slidesPerView;
+        const maxIndex = this.slides.length - this.currentSlidesPerView;
 
         if (this.currentIndex < maxIndex) {
             this.goTo(this.currentIndex + 1);
@@ -230,7 +254,7 @@ class SliderInstance {
         if (this.currentIndex > 0) {
             this.goTo(this.currentIndex - 1);
         } else if (this.config.endBehavior === 'loop' && this.config.loop) {
-            this.goTo(this.slides.length - this.config.slidesPerView);
+            this.goTo(this.slides.length - this.currentSlidesPerView);
         }
         // If endBehavior is 'disable', do nothing when at the beginning
     }
@@ -292,9 +316,56 @@ class SliderInstance {
             }
         });
 
+        let resizeTimer;
         window.addEventListener('resize', () => {
-            this.updateSlidePositions();
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                this.updateResponsiveSettings();
+                this.applyCSSProperties();
+                this.updateSlidePositions();
+                this.updateNavigationState();
+            }, 150);
         });
+    }
+
+    updateResponsiveSettings() {
+        const width = window.innerWidth;
+
+        if (this.config.slideWidthMode === 'fixed') {
+            // Calculate how many slides fit at the given width
+            const containerWidth = this.wrapper.offsetWidth || this.element.offsetWidth;
+            const slideWidth = this.config.slideWidth;
+            const gap = this.config.spaceBetween;
+            
+            // Calculate: (containerWidth + gap) / (slideWidth + gap)
+            this.currentSlidesPerView = Math.max(1, Math.floor((containerWidth + gap) / (slideWidth + gap)));
+        } else {
+            // Auto mode - use responsive breakpoints
+            if (width < this.breakpoints.mobile) {
+                this.currentSlidesPerView = this.config.slidesPerViewMobile;
+            } else if (width < this.breakpoints.tablet) {
+                this.currentSlidesPerView = this.config.slidesPerViewTablet;
+            } else {
+                this.currentSlidesPerView = this.config.slidesPerView;
+            }
+        }
+
+        // Ensure current index doesn't exceed bounds
+        const maxIndex = this.slides.length - this.currentSlidesPerView;
+        if (this.currentIndex > maxIndex) {
+            this.currentIndex = Math.max(0, maxIndex);
+        }
+    }
+
+    applyCSSProperties() {
+        // Apply CSS custom properties for dynamic styling
+        this.element.style.setProperty('--maw-slides-per-view', this.currentSlidesPerView);
+        this.element.style.setProperty('--maw-slide-gap', `${this.config.spaceBetween}px`);
+        this.element.style.setProperty('--maw-transition-speed', `${this.config.speed}ms`);
+
+        if (this.config.slideWidthMode === 'fixed') {
+            this.element.style.setProperty('--maw-slide-width', `${this.config.slideWidth}px`);
+        }
     }
 
     destroy() {

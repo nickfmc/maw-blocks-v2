@@ -126,14 +126,37 @@ export const SliderBehaviorPanel = ({ settings, onChange }) => (
             max={2000}
             step={100}
         />
-        <RangeControl
-            label={__('Slides Per View', 'maw-blocks')}
-            value={settings.slidesPerView}
-            onChange={(value) => onChange({ ...settings, slidesPerView: value })}
-            min={1}
-            max={6}
-            step={1}
+        <SelectControl
+            label={__('Slide Width Mode', 'maw-blocks')}
+            value={settings.slideWidthMode}
+            options={[
+                { label: __('Auto (Responsive)', 'maw-blocks'), value: 'auto' },
+                { label: __('Fixed Width', 'maw-blocks'), value: 'fixed' }
+            ]}
+            onChange={(value) => onChange({ ...settings, slideWidthMode: value })}
+            help={__('Auto: Use slides per view settings. Fixed: Set a slide width and auto-calculate how many fit.', 'maw-blocks')}
         />
+        {settings.slideWidthMode === 'auto' && (
+            <RangeControl
+                label={__('Slides Per View', 'maw-blocks')}
+                value={settings.slidesPerView}
+                onChange={(value) => onChange({ ...settings, slidesPerView: value })}
+                min={1}
+                max={6}
+                step={1}
+            />
+        )}
+        {settings.slideWidthMode === 'fixed' && (
+            <RangeControl
+                label={__('Slide Width (px)', 'maw-blocks')}
+                value={settings.slideWidth}
+                onChange={(value) => onChange({ ...settings, slideWidth: value })}
+                min={100}
+                max={800}
+                step={10}
+                help={__('Slider will automatically show as many slides as fit in the viewport', 'maw-blocks')}
+            />
+        )}
         <RangeControl
             label={__('Space Between Slides (px)', 'maw-blocks')}
             value={settings.spaceBetween}

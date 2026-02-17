@@ -77,6 +77,14 @@
     "effect": {
       "type": "string",
       "default": "slide"
+    },
+    "slideWidthMode": {
+      "type": "string",
+      "default": "auto"
+    },
+    "slideWidth": {
+      "type": "number",
+      "default": 300
     }
   },
   "supports": {

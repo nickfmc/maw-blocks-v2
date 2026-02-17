@@ -32,13 +32,19 @@
 
   &__wrapper {
     display: flex;
+    gap: var(--maw-slide-gap, 20px);
     transition: transform var(--maw-transition-speed) var(--maw-transition-timing);
   }
 
   &__slide {
     flex-shrink: 0;
-    width: 100%;
+    width: calc((100% - (var(--maw-slide-gap, 20px) * (var(--maw-slides-per-view, 1) - 1))) / var(--maw-slides-per-view, 1));
     box-sizing: border-box;
+  }
+
+  // Fixed width mode - slides have specific width
+  &[data-slide-width-mode="fixed"] &__slide {
+    width: var(--maw-slide-width, 300px);
   }
 
   &__navigation {
