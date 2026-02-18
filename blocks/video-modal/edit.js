@@ -133,6 +133,15 @@ export default function Edit({ attributes, setAttributes }) {
                                     </Button>
                                 </>
                             )}
+                            <div style={{ marginTop: '15px', paddingTop: '15px', borderTop: '1px solid #ddd' }}>
+                                <TextControl
+                                    label={__('Or enter video URL manually', 'maw-blocks')}
+                                    value={videoUrl}
+                                    onChange={(value) => setAttributes({ videoUrl: value, videoId: null })}
+                                    placeholder="https://example.com/video.mp4 or {{mpg_video_url}}"
+                                    help={__('Supports MPG variables for dynamic content', 'maw-blocks')}
+                                />
+                            </div>
                         </>
                     )}
 

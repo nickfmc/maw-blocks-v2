@@ -73,8 +73,8 @@ export default function Edit({ attributes, setAttributes }) {
                 if (results && results[0]) {
                     const location = results[0].geometry.location;
                     setAttributes({
-                        latitude: location.lat(),
-                        longitude: location.lng()
+                        latitude: String(location.lat()),
+                        longitude: String(location.lng())
                     });
                     setGeocodeError('');
                 }
@@ -104,17 +104,19 @@ export default function Edit({ attributes, setAttributes }) {
                     <div style={{ display: 'flex', gap: '10px' }}>
                         <TextControl
                             label={__('Latitude', 'maw-blocks')}
-                            type="number"
+                            type="text"
                             value={latitude}
-                            onChange={(value) => setAttributes({ latitude: parseFloat(value) || 0 })}
-                            step="0.0001"
+                            onChange={(value) => setAttributes({ latitude: value })}
+                            placeholder="40.7589 or {{mpg_lat}}"
+                            help={__('Supports MPG variables', 'maw-blocks')}
                         />
                         <TextControl
                             label={__('Longitude', 'maw-blocks')}
-                            type="number"
+                            type="text"
                             value={longitude}
-                            onChange={(value) => setAttributes({ longitude: parseFloat(value) || 0 })}
-                            step="0.0001"
+                            onChange={(value) => setAttributes({ longitude: value })}
+                            placeholder="-73.9851 or {{mpg_long}}"
+                            help={__('Supports MPG variables', 'maw-blocks')}
                         />
                     </div>
 
@@ -225,17 +227,30 @@ export default function Edit({ attributes, setAttributes }) {
                             </svg>
                         </span>
                         <h3>{__('Google Map Preview', 'maw-blocks')}</h3>
-                        <div className={elementClass('google-map', 'details')}>
-                            {address && (
-                                <p><strong>{__('Address:', 'maw-blocks')}</strong> {address}</p>
-                            )}
-                            <p><strong>{__('Coordinates:', 'maw-blocks')}</strong> {latitude.toFixed(4)}, {longitude.toFixed(4)}</p>
-                            <p><strong>{__('Zoom:', 'maw-blocks')}</strong> {zoom}</p>
-                            <p><strong>{__('Type:', 'maw-blocks')}</strong> {mapType}</p>
-                            {showMarker && markerTitle && (
-                                <p><strong>{__('Marker:', 'maw-blocks')}</strong> {markerTitle}</p>
-                            )}
-                        </div>
+                        {(String(latitude).includes('{{') || String(longitude).includes('{{')) ? (
+                            <div className={elementClass('google-map', 'details')}>
+                                <p style={{ color: '#10b981', fontWeight: '500', marginBottom: '8px' }}>
+                                    ✓ {__('MPG Variables Detected', 'maw-blocks')}
+                                </p>
+                                <p><strong>{__('Latitude:', 'maw-blocks')}</strong> {latitude}</p>
+                                <p><strong>{__('Longitude:', 'maw-blocks')}</strong> {longitude}</p>
+                                <p style={{ fontSize: '12px', color: '#666', marginTop: '12px' }}>
+                                    {__('The map will display with actual coordinates when Multiple Pages Generator processes this page.', 'maw-blocks')}
+                                </p>
+                            </div>
+                        ) : (
+                            <div className={elementClass('google-map', 'details')}>
+                                {address && (
+                                    <p><strong>{__('Address:', 'maw-blocks')}</strong> {address}</p>
+                                )}
+                                <p><strong>{__('Coordinates:', 'maw-blocks')}</strong> {parseFloat(latitude).toFixed(4)}, {parseFloat(longitude).toFixed(4)}</p>
+                                <p><strong>{__('Zoom:', 'maw-blocks')}</strong> {zoom}</p>
+                                <p><strong>{__('Type:', 'maw-blocks')}</strong> {mapType}</p>
+                                {showMarker && markerTitle && (
+                                    <p><strong>{__('Marker:', 'maw-blocks')}</strong> {markerTitle}</p>
+                                )}
+                            </div>
+                        )}
                         <p className={elementClass('google-map', 'note')}>
                             {__('The interactive map will be displayed on the frontend when Google Maps API key is configured.', 'maw-blocks')}
                         </p>

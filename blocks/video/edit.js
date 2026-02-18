@@ -4,7 +4,7 @@
 
 import { __ } from '@wordpress/i18n';
 import { useBlockProps, InspectorControls, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
-import { PanelBody, ToggleControl, SelectControl, Button } from '@wordpress/components';
+import { PanelBody, ToggleControl, SelectControl, Button, TextControl } from '@wordpress/components';
 import { blockClass } from '../../src/shared/utils/classnames';
 
 export default function Edit({ attributes, setAttributes }) {
@@ -124,20 +124,31 @@ export default function Edit({ attributes, setAttributes }) {
 
             <div {...blockProps}>
                 {!videoUrl ? (
-                    <MediaUploadCheck>
-                        <MediaUpload
-                            onSelect={onSelectVideo}
-                            allowedTypes={['video']}
-                            value={videoId}
-                            render={({ open }) => (
-                                <div className="maw-video__placeholder">
-                                    <Button onClick={open} variant="primary">
-                                        {__('Select Video', 'maw-blocks')}
-                                    </Button>
-                                </div>
-                            )}
-                        />
-                    </MediaUploadCheck>
+                    <div>
+                        <MediaUploadCheck>
+                            <MediaUpload
+                                onSelect={onSelectVideo}
+                                allowedTypes={['video']}
+                                value={videoId}
+                                render={({ open }) => (
+                                    <div className="maw-video__placeholder">
+                                        <Button onClick={open} variant="primary">
+                                            {__('Select Video', 'maw-blocks')}
+                                        </Button>
+                                    </div>
+                                )}
+                            />
+                        </MediaUploadCheck>
+                        <div style={{ marginTop: '15px', paddingTop: '15px', borderTop: '1px solid #ddd' }}>
+                            <TextControl
+                                label={__('Or enter video URL manually', 'maw-blocks')}
+                                value={videoUrl}
+                                onChange={(value) => setAttributes({ videoUrl: value, videoId: null })}
+                                placeholder="https://example.com/video.mp4 or {{mpg_video_url}}"
+                                help={__('Supports MPG variables for dynamic content', 'maw-blocks')}
+                            />
+                        </div>
+                    </div>
                 ) : (
                     <div className="maw-video__wrapper">
                         <video
@@ -157,6 +168,15 @@ export default function Edit({ attributes, setAttributes }) {
                         >
                             {__('Remove Video', 'maw-blocks')}
                         </Button>
+                        <div style={{ marginTop: '15px', paddingTop: '15px', borderTop: '1px solid #ddd' }}>
+                            <TextControl
+                                label={__('Or enter video URL manually', 'maw-blocks')}
+                                value={videoUrl}
+                                onChange={(value) => setAttributes({ videoUrl: value, videoId: null })}
+                                placeholder="https://example.com/video.mp4 or {{mpg_video_url}}"
+                                help={__('Supports MPG variables for dynamic content', 'maw-blocks')}
+                            />
+                        </div>
                     </div>
                 )}
             </div>

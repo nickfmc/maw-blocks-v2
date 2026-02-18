@@ -14,12 +14,12 @@
   "viewScript": "maw-blocks-google-map-view",
   "attributes": {
     "latitude": {
-      "type": "number",
-      "default": 40.7589
+      "type": "string",
+      "default": "40.7589"
     },
     "longitude": {
-      "type": "number",
-      "default": -73.9851
+      "type": "string",
+      "default": "-73.9851"
     },
     "zoom": {
       "type": "number",
