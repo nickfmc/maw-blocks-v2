@@ -3,7 +3,7 @@
  * Plugin Name: MAW Blocks
  * Plugin URI: https://github.com/yourusername/maw-blocks
  * Description: Feature-rich, style-light Gutenberg blocks for custom WordPress solutions. Enable only what you need, style everything your way.
- * Version: 1.0.0
+ * Version: 2.0.0
  * Author: Nick M
  * Author URI: https://yourwebsite.com
  * License: GPL-2.0+
@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('MAW_BLOCKS_VERSION', '1.0.0');
+define('MAW_BLOCKS_VERSION', '2.0.0');
 define('MAW_BLOCKS_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('MAW_BLOCKS_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('MAW_BLOCKS_PLUGIN_FILE', __FILE__);
@@ -74,6 +74,7 @@ class MAW_Blocks {
         add_action('admin_menu', [$this, 'add_settings_page']);
         add_action('admin_init', [$this, 'register_settings']);
         add_action('wp_footer', [$this, 'debug_enqueued_scripts'], 999);
+        // Migration tool removed - was corrupting other blocks
     }
 
     /**

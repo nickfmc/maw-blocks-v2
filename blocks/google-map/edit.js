@@ -40,7 +40,29 @@ export default function Edit({ attributes, setAttributes }) {
         fullscreenControl
     } = attributes;
 
+    // Ensure latitude and longitude are strings (handle legacy number values)
+    const latStr = String(latitude || '40.7589');
+    const lngStr = String(longitude || '-73.9851');
+
     const [geocodeError, setGeocodeError] = useState('');
+
+    // Convert legacy numeric values to strings on component mount
+    useEffect(() => {
+        console.log('MAW Google Map Edit - Current attribute types:', {
+            latitude,
+            longitude,
+            latType: typeof latitude,
+            lngType: typeof longitude
+        });
+        
+        if (typeof latitude === 'number' || typeof longitude === 'number') {
+            console.log('MAW Google Map Edit - Converting numeric values to strings');
+            setAttributes({
+                latitude: String(latitude),
+                longitude: String(longitude)
+            });
+        }
+    }, []); // Empty dependency array - only run once on mount
 
     const blockProps = useBlockProps({
         className: blockClass('google-map', {
@@ -105,16 +127,16 @@ export default function Edit({ attributes, setAttributes }) {
                         <TextControl
                             label={__('Latitude', 'maw-blocks')}
                             type="text"
-                            value={latitude}
-                            onChange={(value) => setAttributes({ latitude: value })}
+                            value={latStr}
+                            onChange={(value) => setAttributes({ latitude: value || '40.7589' })}
                             placeholder="40.7589 or {{mpg_lat}}"
                             help={__('Supports MPG variables', 'maw-blocks')}
                         />
                         <TextControl
                             label={__('Longitude', 'maw-blocks')}
                             type="text"
-                            value={longitude}
-                            onChange={(value) => setAttributes({ longitude: value })}
+                            value={lngStr}
+                            onChange={(value) => setAttributes({ longitude: value || '-73.9851' })}
                             placeholder="-73.9851 or {{mpg_long}}"
                             help={__('Supports MPG variables', 'maw-blocks')}
                         />
@@ -227,13 +249,13 @@ export default function Edit({ attributes, setAttributes }) {
                             </svg>
                         </span>
                         <h3>{__('Google Map Preview', 'maw-blocks')}</h3>
-                        {(String(latitude).includes('{{') || String(longitude).includes('{{')) ? (
+                        {(latStr.includes('{{') || lngStr.includes('{{')) ? (
                             <div className={elementClass('google-map', 'details')}>
                                 <p style={{ color: '#10b981', fontWeight: '500', marginBottom: '8px' }}>
                                     ✓ {__('MPG Variables Detected', 'maw-blocks')}
                                 </p>
-                                <p><strong>{__('Latitude:', 'maw-blocks')}</strong> {latitude}</p>
-                                <p><strong>{__('Longitude:', 'maw-blocks')}</strong> {longitude}</p>
+                                <p><strong>{__('Latitude:', 'maw-blocks')}</strong> {latStr}</p>
+                                <p><strong>{__('Longitude:', 'maw-blocks')}</strong> {lngStr}</p>
                                 <p style={{ fontSize: '12px', color: '#666', marginTop: '12px' }}>
                                     {__('The map will display with actual coordinates when Multiple Pages Generator processes this page.', 'maw-blocks')}
                                 </p>
@@ -243,7 +265,7 @@ export default function Edit({ attributes, setAttributes }) {
                                 {address && (
                                     <p><strong>{__('Address:', 'maw-blocks')}</strong> {address}</p>
                                 )}
-                                <p><strong>{__('Coordinates:', 'maw-blocks')}</strong> {parseFloat(latitude).toFixed(4)}, {parseFloat(longitude).toFixed(4)}</p>
+                                <p><strong>{__('Coordinates:', 'maw-blocks')}</strong> {parseFloat(latStr).toFixed(4)}, {parseFloat(lngStr).toFixed(4)}</p>
                                 <p><strong>{__('Zoom:', 'maw-blocks')}</strong> {zoom}</p>
                                 <p><strong>{__('Type:', 'maw-blocks')}</strong> {mapType}</p>
                                 {showMarker && markerTitle && (

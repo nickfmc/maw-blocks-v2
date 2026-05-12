@@ -1,6 +1,6 @@
 {
   "name": "maw-blocks",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Feature-rich, style-light Gutenberg blocks for custom WordPress solutions",
   "private": true,
   "scripts": {

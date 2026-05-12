@@ -25,6 +25,18 @@ export default function save({ attributes }) {
         fullscreenControl
     } = attributes;
 
+    // Ensure coordinates are strings for proper output
+    // Handle undefined, null, numbers, and string values
+    let latStr = '40.7589';
+    let lngStr = '-73.9851';
+    
+    if (latitude !== undefined && latitude !== null && latitude !== '') {
+        latStr = String(latitude);
+    }
+    if (longitude !== undefined && longitude !== null && longitude !== '') {
+        lngStr = String(longitude);
+    }
+
     const blockProps = useBlockProps.save({
         className: blockClass('google-map', {
             'has-marker': showMarker,
@@ -39,8 +51,8 @@ export default function save({ attributes }) {
         <div {...blockProps}>
             <div
                 className={elementClass('google-map', 'container')}
-                data-latitude={latitude}
-                data-longitude={longitude}
+                data-latitude={latStr}
+                data-longitude={lngStr}
                 data-zoom={zoom}
                 data-map-type={mapType}
                 data-show-marker={showMarker}

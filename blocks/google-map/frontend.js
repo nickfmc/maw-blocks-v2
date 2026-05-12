@@ -127,9 +127,31 @@ class MAWGoogleMapController {
 
     initializeMap(container, index) {
         // Get map configuration from data attributes
+        // Handle both numeric strings and actual numbers, trim whitespace
+        const rawLat = container.dataset.latitude?.trim();
+        const rawLng = container.dataset.longitude?.trim();
+        
+        console.log('MAW Google Map - Initializing:', {
+            rawLat,
+            rawLng,
+            allDataAttributes: container.dataset
+        });
+        
+        const parsedLat = parseFloat(rawLat);
+        const parsedLng = parseFloat(rawLng);
+        
+        console.log('MAW Google Map - Parsed coordinates:', {
+            parsedLat,
+            parsedLng,
+            isLatValid: !isNaN(parsedLat),
+            isLngValid: !isNaN(parsedLng),
+            willUseLat: !isNaN(parsedLat) ? parsedLat : 40.7589,
+            willUseLng: !isNaN(parsedLng) ? parsedLng : -73.9851
+        });
+        
         const config = {
-            latitude: parseFloat(container.dataset.latitude) || 40.7589,
-            longitude: parseFloat(container.dataset.longitude) || -73.9851,
+            latitude: !isNaN(parsedLat) ? parsedLat : 40.7589,
+            longitude: !isNaN(parsedLng) ? parsedLng : -73.9851,
             zoom: parseInt(container.dataset.zoom) || 13,
             mapType: container.dataset.mapType || 'roadmap',
             showMarker: container.dataset.showMarker === 'true',

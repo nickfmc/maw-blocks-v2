@@ -147,6 +147,21 @@ $google_maps_snazzy_styles = get_option('maw_blocks_google_maps_snazzy_styles', 
             </div>
         <?php endif; ?>
 
+        <!-- Manual migration instructions -->
+        <hr>
+
+        <h2><?php _e('Fix Google Map Coordinates (Manual)', 'maw-blocks'); ?></h2>
+        <div class="notice notice-info inline">
+            <p><strong><?php _e('If your Google Maps show incorrect locations after updating to version 2.0:', 'maw-blocks'); ?></strong></p>
+            <ol>
+                <li><?php _e('Edit each post/page with a map block', 'maw-blocks'); ?></li>
+                <li><?php _e('Click on the map block in the editor', 'maw-blocks'); ?></li>
+                <li><?php _e('Re-enter the latitude and longitude values', 'maw-blocks'); ?></li>
+                <li><?php _e('Click "Update" to save', 'maw-blocks'); ?></li>
+            </ol>
+            <p><?php _e('The map blocks now support string values and MPG variables like {{mpg_lat}} and {{mpg_long}}.', 'maw-blocks'); ?></p>
+        </div>
+
         <?php submit_button(); ?>
     </form>
 </div>
