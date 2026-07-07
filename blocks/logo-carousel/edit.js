@@ -30,7 +30,8 @@ export default function Edit({ attributes, setAttributes }) {
         const newLogos = [...logos, {
             id: media.id,
             url: media.url,
-            alt: media.alt || ''
+            alt: media.alt || '',
+            link: ''
         }];
         const newWidths = [...logoWidths, 150]; // Default width for new logos
         setAttributes({ 
@@ -76,6 +77,12 @@ export default function Edit({ attributes, setAttributes }) {
     const updateLogoAlt = (index, alt) => {
         const newLogos = [...logos];
         newLogos[index] = { ...newLogos[index], alt };
+        setAttributes({ logos: newLogos });
+    };
+
+    const updateLogoLink = (index, link) => {
+        const newLogos = [...logos];
+        newLogos[index] = { ...newLogos[index], link };
         setAttributes({ logos: newLogos });
     };
 
@@ -216,6 +223,14 @@ export default function Edit({ attributes, setAttributes }) {
                                                 }
                                             />
                                             <div className={elementClass('logo-carousel', 'item-controls')}>
+                                                <TextControl
+                                                    label={__('Link URL', 'maw-blocks')}
+                                                    type="url"
+                                                    value={logo.link || ''}
+                                                    onChange={(value) => updateLogoLink(index, value)}
+                                                    placeholder={__('https://example.com', 'maw-blocks')}
+                                                    className={elementClass('logo-carousel', 'link-input')}
+                                                />
                                                 {useManualWidths && (
                                                     <TextControl
                                                         label={__('Width (px)', 'maw-blocks')}

@@ -42,20 +42,32 @@ export default function Save({ attributes }) {
             <div className={elementClass('logo-carousel', 'container')}>
                 <div className={elementClass('logo-carousel', 'wrapper')}>
                     <div className={elementClass('logo-carousel', 'track')}>
-                        {logos.map((logo, index) => (
-                            <div
-                                key={`${logo.id}-${index}`}
-                                className={elementClass('logo-carousel', 'item')}
-                                {...(useManualWidths && logoWidths[index] ? { 'data-width': logoWidths[index] } : {})}
-                            >
+                        {logos.map((logo, index) => {
+                            const logoImage = (
                                 <img
                                     src={logo.url}
                                     alt={logo.alt}
                                     loading="lazy"
                                     {...(useManualWidths && logoWidths[index] ? { style: { width: `${logoWidths[index]}px`, height: 'auto' } } : {})}
                                 />
-                            </div>
-                        ))}
+                            );
+
+                            return (
+                                <div
+                                    key={`${logo.id}-${index}`}
+                                    className={elementClass('logo-carousel', 'item')}
+                                    {...(useManualWidths && logoWidths[index] ? { 'data-width': logoWidths[index] } : {})}
+                                >
+                                    {logo.link ? (
+                                        <a href={logo.link} target="_blank" rel="noopener noreferrer">
+                                            {logoImage}
+                                        </a>
+                                    ) : (
+                                        logoImage
+                                    )}
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </div>
